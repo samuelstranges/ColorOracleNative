@@ -1,0 +1,53 @@
+﻿<Window x:Class="Color_Test_WPF_App_NET_Framework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Color_Test_WPF_App_NET_Framework"
+        mc:Ignorable="d"
+        Title="Color Oracle" Height="400" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32*"/>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="181*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Rectangle Fill=" 	#8A2BE2" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="266" Grid.Column="2" Margin="17.2,-47,-102.4,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <Rectangle Fill="  #8A2BE2" HorizontalAlignment="Left" Height="142" Stroke="Black" VerticalAlignment="Top" Width="266" Margin="-92,261,0,-32.6" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+
+
+        <Label Content="Color Oracle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="111,34,0,0" Height="56" Width="102" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <RadioButton x:Name="radioDu" Content="Duteranopia" HorizontalAlignment="Left" Margin="111,132,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" GroupName="Color_Blindness_Type" Height="15" Width="85" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="radioPro" Content="Protanopia" HorizontalAlignment="Left" Margin="111,152,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" GroupName="Color_Blindness_Type" Height="15" Width="77" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="radioTri" Content="Tritanopia" HorizontalAlignment="Left" Margin="111,172,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" GroupName="Color_Blindness_Type" Height="15" Width="71" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="radioGr" Content="Grayscale" HorizontalAlignment="Left" Margin="111,192,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" GroupName="Color_Blindness_Type" Height="15" Width="70" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button Content="Screenshot" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="160" Click="Button_Click" Height="50" Grid.ColumnSpan="2"/>
+        <Button Content="Window Mode" HorizontalAlignment="Left" Margin="6.2,310,0,0" VerticalAlignment="Top" Width="164" Height="50" Grid.Column="2" Click="Button_Click_1"/>
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="40" Margin="3.8,34,0,0" VerticalAlignment="Top" Width="40" Source="icon48x48.png" Grid.Column="1"/>
+
+
+
+    </Grid>
+</Window>
