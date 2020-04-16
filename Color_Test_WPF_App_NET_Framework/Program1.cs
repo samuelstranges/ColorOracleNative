@@ -77,6 +77,7 @@ namespace Color_Test_WPF_App_NET_Framework
                 }
             };
            
+  
             MagInitialize();
             switch (this.color_filter_key)
             {
@@ -94,12 +95,8 @@ namespace Color_Test_WPF_App_NET_Framework
                     break;
 
             }
-                
-
-            Console.WriteLine("1111");
+             
             Console.ReadLine();
-            
-            Console.WriteLine("2222");
         }
     }
 

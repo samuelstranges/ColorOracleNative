@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\
+C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Release\
 Color_Test_WPF_App_NET_Framework
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\App.xaml
 5740974476
 1744076256
-172126938130
-21-1562053559
+16803156254
+171407084093
 About.xaml;FeedbackPage.xaml;Help.xaml;MainWindow.xaml;Properties\Window1.xaml;
 
 True

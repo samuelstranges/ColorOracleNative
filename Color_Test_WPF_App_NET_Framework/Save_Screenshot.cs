@@ -70,33 +70,54 @@ namespace Color_Test_WPF_App_NET_Framework
             double[] SRGB_TO_LRGB = generate_SRGB_TO_LRGB_TABLE();
 
 
-
+            // string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\awesome.jpg";
             Bitmap image = bmp;
 
-            for (int y = 0; y < image.Height; y++)
+            unsafe
             {
-                for (int x = 0; x < image.Width; x++)
+                BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, image.PixelFormat);
+                int bytesPerPixel = Bitmap.GetPixelFormatSize(image.PixelFormat) / 8;
+                int heightInPixels = bitmapData.Height;
+                int widthInBytes = bitmapData.Width * bytesPerPixel;
+
+
+                byte* PtrFirstPixel = (byte*)bitmapData.Scan0;
+
+                Parallel.For(0, heightInPixels, y =>
                 {
-                    Color clr = image.GetPixel(x, y);
-                    Matrix<double> lrgb = DenseMatrix.OfArray(new double[,] {
-                        { SRGB_TO_LRGB[clr.R] },
-                        { SRGB_TO_LRGB[clr.G] },
-                        { SRGB_TO_LRGB[clr.B] }
+                    byte* currentLine = PtrFirstPixel + (y * bitmapData.Stride);
+                    for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
+                    {
+                        int oldBlue = currentLine[x];
+                        int oldGreen = currentLine[x + 1];
+                        int oldRed = currentLine[x + 2];
+
+                        // process
+                        Matrix<double> lrgb = DenseMatrix.OfArray(new double[,] {
+                        { SRGB_TO_LRGB[oldRed] },
+                        { SRGB_TO_LRGB[oldGreen] },
+                        { SRGB_TO_LRGB[oldBlue] }
                     });
 
-                    Matrix<double> lms = RGB_TO_LMS_MATRIX.Multiply(lrgb);
-                    Matrix<double> adjusted_lms = PROTAN_MATRIX.Multiply(lms);
+                        Matrix<double> lms = RGB_TO_LMS_MATRIX.Multiply(lrgb);
+                        Matrix<double> adjusted_lms = PROTAN_MATRIX.Multiply(lms);
+                        Matrix<double> tmp = RGB_TO_LMS_MATRIX_INV.Multiply(adjusted_lms);
 
-                    Matrix<double> tmp = RGB_TO_LMS_MATRIX_INV.Multiply(adjusted_lms);
+                        int newRed = apply_gamma(tmp[0, 0]);
+                        int newGreen = apply_gamma(tmp[1, 0]);
+                        int newBlue = apply_gamma(tmp[2, 0]);
 
-                    Color newclr = Color.FromArgb(apply_gamma(tmp[0, 0]), apply_gamma(tmp[1, 0]), apply_gamma(tmp[2, 0]));
+                        currentLine[x] = (byte)newBlue;
+                        currentLine[x + 1] = (byte)newGreen;
+                        currentLine[x + 2] = (byte)newRed;
+                    }
+                });
 
-                    image.SetPixel(x, y, newclr);
-                }
+                image.UnlockBits(bitmapData);
             }
 
             //image.Save(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\new_awesome.jpg");
-            
+
             stopwatch.Stop();
             Console.WriteLine("process is done! time used: {0}ms", stopwatch.ElapsedMilliseconds);
             Console.ReadLine();
