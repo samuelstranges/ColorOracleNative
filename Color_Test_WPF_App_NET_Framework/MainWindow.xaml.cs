@@ -38,34 +38,47 @@ namespace Color_Test_WPF_App_NET_Framework
    
     public partial class MainWindow : Window
     {
-
-
-        public int color_filter_key = 1; //defaults to Protan
+        //initialize the realtime filter and default to normal 
+        public static int color_filter_key = 0;
+        Program1 mode = new Program1(color_filter_key);
+        //if the default is normal, the filter is off for color blindness 
+        public Boolean mode_status = false;
         public MainWindow()
         {
             InitializeComponent();
+            
         }
-
+        
+        void changeMode() {
+            //function to switch the filter mode in real-time filter
+            if (mode_status)
+            {
+                mode.live();
+                //Console.WriteLine("change");
+            }
+        }
         private void setDu(object sender, RoutedEventArgs e)
         {
-            color_filter_key = 1;
+            mode.color_filter_key = 1;
+            changeMode();
         }
+        
         private void setPro(object sender, RoutedEventArgs e)
         {
-            color_filter_key = 2;
+            mode.color_filter_key = 2;
+            changeMode();
         }
         private void setTri(object sender, RoutedEventArgs e)
         {
-            color_filter_key = 3;
+            mode.color_filter_key = 3;
+            changeMode();
         }
         private void setGr(object sender, RoutedEventArgs e)
         {
-            color_filter_key = 4;
+            mode.color_filter_key = 4;
+            changeMode();
+            
         }
-
-
-
-
 
         private void Screenshot(object sender, RoutedEventArgs e)
         {
@@ -81,10 +94,21 @@ namespace Color_Test_WPF_App_NET_Framework
 
         public void clickWindow(object sender, RoutedEventArgs e)
         {
+            //If mode off, set status to true and trun on the mode.
+            if (!mode_status)
+            {
+                mode_status = true;
+                changeMode();
+                
+            }
+            //else reset the graph.
+            else {
 
-            Program1 mode = new Program1(color_filter_key);
-            mode.live();
-
+                mode.color_filter_key = 0;
+                mode.live();
+                mode_status = false;
+            }
+            
         }
 
         private void openSendFeedback(object sender, RoutedEventArgs e)
