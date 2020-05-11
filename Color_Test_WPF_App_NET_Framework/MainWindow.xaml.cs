@@ -142,7 +142,7 @@ namespace Color_Test_WPF_App_NET_Framework
         private void Button_Click(object sender, EventArgs e)
         {
             this.WindowState = System.Windows.WindowState.Minimized;
-            this.nIcon.Icon = new Icon(@"D:\FIT3162\Color_Test_WPF_App_NET_Framework\images\bitbug_favicon.ico");
+            this.nIcon.Icon = new Icon("../../images/trayicon.ico");
             contextMenu1.MenuItems.Add("Help", (s, d) => this.openHelp(s, d));
             contextMenu1.MenuItems.Add("About", (s, d) => this.openAbout(s, d));
             contextMenu1.MenuItems.Add("Live Mode", (s, d) => this.clickWindow(s, d));
