@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
 
 
+
         <Rectangle Fill=" 	#4a154b" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="266" Margin="233,-44,-105.4,0" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -45,8 +46,8 @@
             <Button Click="setPro">
                 <Button.Template>
                     <ControlTemplate>
-                            <Image x:Name="TriImage" Cursor="Hand" Height="64" Margin="0,0,207.2,0" VerticalAlignment="Center" Width="64" Source="trit.png" HorizontalAlignment="Center" ToolTip="Tritanopia"/>
-                     </ControlTemplate>
+                        <Image x:Name="TriImage" Cursor="Hand" Height="64" Margin="0,0,207.2,0" VerticalAlignment="Center" Width="64" Source="trit.png" HorizontalAlignment="Center" ToolTip="Tritanopia"/>
+                    </ControlTemplate>
                 </Button.Template>
             </Button>
 
@@ -80,6 +81,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+
 
         </Grid>
 
@@ -115,7 +117,7 @@
         </Button>
 
 
-        <Button Click="clickWindow" Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
+        <Button Click="clickWindow" Margin="0,0,-0.4,0.4" Grid.RowSpan="2" Content="">
             <Button.Template>
                 <ControlTemplate>
                     <Image x:Name="VideoImage" Cursor="Hand" Height="50" Margin="334,255,9.6,65.4" VerticalAlignment="Center" Width="50" Source="video.png" HorizontalAlignment="Center" ToolTip="Real Time"/>
@@ -126,6 +128,7 @@
 
         <Label Content="Color Oracle&#xD;&#xA;" Margin="61,2.8,127.6,283.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.Row="1"/>
         <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,67.8,127.6,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Width="21" RenderTransformOrigin="-0.667,0.573" Height="24" Click="Button_Click"/>
 
     </Grid>
 </Window>

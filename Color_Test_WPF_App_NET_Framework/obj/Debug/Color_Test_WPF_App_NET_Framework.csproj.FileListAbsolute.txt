@@ -115,7 +115,6 @@ C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Deb
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe.config
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.pdb
-D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.csprojAssemblyReference.cache
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\About.g.cs
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\FeedbackPage.g.cs
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Help.g.cs
@@ -140,3 +139,4 @@ D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Fra
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.csproj.CopyComplete
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.exe
 D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.pdb
+D:\FIT3162\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.csprojAssemblyReference.cache
