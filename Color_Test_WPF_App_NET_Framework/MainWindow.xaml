@@ -7,11 +7,20 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Color Oracle" Height="400" Width="400">
+
+
+
+    <Window.InputBindings>
+        <KeyBinding Command="Help" Key="H" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="22*"/>
             <RowDefinition Height="163*"/>
         </Grid.RowDefinitions>
+
+
 
 
         <Rectangle Fill=" 	#4a154b" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="266" Margin="233,-44,-105.4,0" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
@@ -35,28 +44,28 @@
             </Rectangle.RenderTransform>
         </Rectangle>
 
-        <Image x:Name="Logo" Height="40" Margin="10,2.8,343.6,283.4" VerticalAlignment="Center" Width="40"  HorizontalAlignment="Center" Source="icon48x48.png" Grid.Row="1"/>
+
+        <Image x:Name="Logo" Margin="10,30,343.6,300.4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="icon48x48.png" Grid.RowSpan="2"/>
         <Grid Margin="61,0,0,153.4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
 
-            <Button Click="setPro">
+            <Button Click="setTri">
                 <Button.Template>
                     <ControlTemplate>
-                            <Image x:Name="TriImage" Cursor="Hand" Height="64" Margin="0,0,207.2,0" VerticalAlignment="Center" Width="64" Source="trit.png" HorizontalAlignment="Center" ToolTip="Tritanopia"/>
-                     </ControlTemplate>
+                        <Image x:Name="TriImage" Cursor="Hand" Height="64" Margin="0,0,207.2,0" VerticalAlignment="Center" Width="64" Source="trit.png" HorizontalAlignment="Center" ToolTip="Tritanopia"/>
+                    </ControlTemplate>
                 </Button.Template>
             </Button>
 
 
 
-            <Button Click="setDu">
+            <Button x:Name="duButton" Click="setDeu">
                 <Button.Template>
                     <ControlTemplate>
-
-                        <Image x:Name="DeuImage" Cursor="Hand" Height="64" Margin="69,0,138.2,0" VerticalAlignment="Center" Width="64" Source="deut.png" HorizontalAlignment="Center" ToolTip="Deuteranopia"/>
+                        <Image x:Name="DuImage" Cursor="Hand" Height="64" Margin="69,0,138.2,0" VerticalAlignment="Center" Width="64" Source="deut.png" HorizontalAlignment="Center" ToolTip="Deuteranopia"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
@@ -65,7 +74,6 @@
             <Button Click="setPro">
                 <Button.Template>
                     <ControlTemplate>
-
                         <Image x:Name="ProImage" Cursor="Hand" Height="64" Margin="138,0,69.2,0" VerticalAlignment="Center" Width="64" Source="prot.png" HorizontalAlignment="Center" ToolTip="Protanopia"/>
                     </ControlTemplate>
                 </Button.Template>
@@ -85,47 +93,52 @@
 
 
 
-        <Menu Margin="0,0,-0.4,2.2" >
+        <Menu Margin="0,0,-0.4,24" >
             <MenuItem Header="File">
-                <MenuItem Header="About" Click="openAbout"/>
-                <MenuItem Header="Send Feedback" Click="openSendFeedback"/>
-                <MenuItem Header="Help" Click="openHelp"/>
+                <MenuItem Header="About" Click="openAbout" InputGestureText="Ctrl+A"/>
+                <MenuItem Header="Send Feedback" Click="openSendFeedback" InputGestureText="Ctrl+G"/>
+                <MenuItem Header="Help" Click="openHelp" InputGestureText="Ctrl+H"/>
             </MenuItem>
 
             <MenuItem Header="Settings">
                 <MenuItem Header="Blindness Type">
-                    <MenuItem Header="Duteranopia" Click="setDu"/>
-                    <MenuItem Header="Protanopia" Click="setPro"/>
-                    <MenuItem Header="Tritanopia" Click="setTri"/>
-                    <MenuItem Header="Grayscale" Click="setGr"/>
+                    <MenuItem Header="Duteranopia" Click="setDeu" InputGestureText="Ctrl+Q"/>
+                    <MenuItem Header="Protanopia" Click="setPro" InputGestureText="Ctrl+W"/>
+                    <MenuItem Header="Tritanopia" Click="setTri" InputGestureText="Ctrl+E"/>
+                    <MenuItem Header="Grayscale" Click="setGr"   InputGestureText="Ctrl+R"/>
                 </MenuItem>
-                <MenuItem Header="Edit Keyboard Shortcuts"/>
-
             </MenuItem>
 
+            <MenuItem Header="Run">
+                <MenuItem Header="Real Time Filter" Click="clickWindow" InputGestureText="Ctrl+F"/>
+                <MenuItem Header="Screenshot" Click="Screenshot" InputGestureText="Ctrl+S"/>
+            </MenuItem>
         </Menu>
-
 
         <Button Click="Screenshot" Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
             <Button.Template>
                 <ControlTemplate>
-                    <Image x:Name="ScreenshotImage" Cursor="Hand" Height="50" Margin="334,310,9.6,10.4" VerticalAlignment="Center" Width="50" Source="screenshot.png" HorizontalAlignment="Center" ToolTip="Screenshot"/>
+                    <Image x:Name="ScreenshotImage" Cursor="Hand" Margin="334,310,9.6,10.4" VerticalAlignment="Center" Source="screenshot.png" HorizontalAlignment="Center" ToolTip="Screenshot"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
+
 
 
         <Button Click="clickWindow" Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
             <Button.Template>
                 <ControlTemplate>
-                    <Image x:Name="VideoImage" Cursor="Hand" Height="50" Margin="334,255,9.6,65.4" VerticalAlignment="Center" Width="50" Source="video.png" HorizontalAlignment="Center" ToolTip="Real Time"/>
+                    <Image x:Name="VideoImage" Cursor="Hand" Margin="334,255,9.6,65.4" VerticalAlignment="Center" Source="video.png" HorizontalAlignment="Center" ToolTip="Real Time"/>
                 </ControlTemplate>
             </Button.Template>
         </Button>
 
+        <Label x:Name="chosenType" Content="Chosen type: None" HorizontalContentAlignment="Center" Height="100" Margin="61,180,61.6,46.4" Grid.Row="1"/>
 
-        <Label Content="Color Oracle&#xD;&#xA;" Margin="61,2.8,127.6,283.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.Row="1"/>
-        <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,67.8,127.6,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label Content="Color Oracle&#xD;&#xA;" Margin="51,31,137.6,299.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.RowSpan="2"/>
+        <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,68,74.6,0" VerticalAlignment="Top" Grid.Row="1" Width="192"/>
 
     </Grid>
 </Window>
+
+

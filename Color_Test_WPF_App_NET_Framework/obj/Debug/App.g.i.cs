@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
 
 using Color_Test_WPF_App_NET_Framework;
+using NHotkey.Wpf;
 using System;
 using System.Diagnostics;
 using System.Windows;

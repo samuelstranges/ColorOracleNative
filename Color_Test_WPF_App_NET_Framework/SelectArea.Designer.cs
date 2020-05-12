@@ -7,6 +7,7 @@
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -60,6 +61,7 @@
             this.ClientSize = new System.Drawing.Size(800, 480);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
+            this.KeyPreview = true;
             this.Name = "SelectArea";
             this.Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -29,6 +29,7 @@ namespace Color_Test_WPF_App_NET_Framework
             this.color_filter_key = key;
             
         }
+        
         public void live()
         {
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
@@ -76,10 +77,24 @@ namespace Color_Test_WPF_App_NET_Framework
                     0.0f,       0.0f,       0.0f,       0.0f,  1.0f
                 }
             };
-           
+            //default matrix
+            var original = new MAGCOLOREFFECT
+            {
+                transform = new[] {
+                   1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+                   0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+                   0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+                   0.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+                   0.0f,  0.0f,  0.0f,  0.0f,  1.0f
+                }
+            };
+
             MagInitialize();
             switch (this.color_filter_key)
             {
+                case 0:
+                    MagSetFullscreenColorEffect(ref original);
+                    break;
                 case 1:
                     MagSetFullscreenColorEffect(ref deuteran);
                     break;
@@ -95,12 +110,10 @@ namespace Color_Test_WPF_App_NET_Framework
 
             }
                 
-
-            Console.WriteLine("1111");
             Console.ReadLine();
             
-            Console.WriteLine("2222");
         }
+      
     }
 
     public class NativeMethods
