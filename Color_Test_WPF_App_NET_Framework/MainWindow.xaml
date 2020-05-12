@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Closing="dontClose"
         ResizeMode="CanMinimize"
+        Icon="icon48x48.png"
         Title="Color Oracle" Height="400" Width="400">
 
 

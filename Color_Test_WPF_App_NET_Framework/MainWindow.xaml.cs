@@ -52,16 +52,13 @@ namespace Color_Test_WPF_App_NET_Framework
         //Public, so that the trayicon can also get these methods.
         public void toggleRealTimeGS(object sender, EventArgs t) { realTime(); }
         public void screenshotGS(object sender, EventArgs t) { runScreenshot(); }
-        public void switchTypesGS(object sender, EventArgs t)
-        {
-
-            switch (mode.color_filter_key)
-            {
-                case 0: deuSetter(); break;
-                case 1: proSetter(); break;
-                case 2: triSetter(); break;
-                case 3: grSetter(); break;
-                case 4: normalSetter(); break;
+        public void switchTypesGS(object sender, EventArgs t){
+            switch (mode.color_filter_key){
+                case 0: deuSetter();   break;
+                case 1: proSetter();   break;
+                case 2: triSetter();   break;
+                case 3: grSetter();    break;
+                case 4: normalSetter();break;
             }
         }
 
@@ -132,15 +129,6 @@ namespace Color_Test_WPF_App_NET_Framework
         private void helpOpener() { System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ"); }
 
         private void aboutOpener() { About aboutPage = new About(); aboutPage.Show(); }
-
-
-
-
-
-        void window_maximize()
-        {
-            this.WindowState = WindowState.Maximized;
-
 
         }
     }
