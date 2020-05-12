@@ -22,7 +22,6 @@
 
 
 
-
         <Rectangle Fill=" 	#4a154b" HorizontalAlignment="Left" Height="144" Stroke="Black" VerticalAlignment="Top" Width="266" Margin="233,-44,-105.4,0" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -89,6 +88,7 @@
                 </Button.Template>
             </Button>
 
+
         </Grid>
 
 
@@ -135,10 +135,9 @@
 
         <Label x:Name="chosenType" Content="Chosen type: None" HorizontalContentAlignment="Center" Height="100" Margin="61,180,61.6,46.4" Grid.Row="1"/>
 
-        <Label Content="Color Oracle&#xD;&#xA;" Margin="51,31,137.6,299.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.RowSpan="2"/>
-        <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,68,74.6,0" VerticalAlignment="Top" Grid.Row="1" Width="192"/>
+        <Label Content="Color Oracle&#xD;&#xA;" Margin="61,2.8,127.6,283.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.Row="1"/>
+        <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,67.8,127.6,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="177,0,0,10" VerticalAlignment="Bottom" Width="21" RenderTransformOrigin="-0.667,0.573" Height="24" Click="Button_Click"/>
 
     </Grid>
 </Window>
-
-

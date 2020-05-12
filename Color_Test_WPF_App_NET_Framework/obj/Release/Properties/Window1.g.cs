@@ -34,15 +34,15 @@ using System.Windows.Shell;
 
 
 namespace Color_Test_WPF_App_NET_Framework.Properties {
-    
-    
+
+
     /// <summary>
     /// Screenshot
     /// </summary>
     public partial class Screenshot : System.Windows.Window, System.Windows.Markup.IComponentConnector {
-        
+
         private bool _contentLoaded;
-        
+
         /// <summary>
         /// InitializeComponent
         /// </summary>
@@ -54,14 +54,14 @@ namespace Color_Test_WPF_App_NET_Framework.Properties {
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Color_Test_WPF_App_NET_Framework;component/properties/window1.xaml", System.UriKind.Relative);
-            
+
             #line 1 "..\..\..\Properties\Window1.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-            
+
             #line default
             #line hidden
         }
-        
+
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -73,4 +73,3 @@ namespace Color_Test_WPF_App_NET_Framework.Properties {
         }
     }
 }
-

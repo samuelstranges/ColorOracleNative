@@ -34,15 +34,15 @@ using System.Windows.Shell;
 
 
 namespace Color_Test_WPF_App_NET_Framework {
-    
-    
+
+
     /// <summary>
     /// About
     /// </summary>
     public partial class About : System.Windows.Window, System.Windows.Markup.IComponentConnector {
-        
+
         private bool _contentLoaded;
-        
+
         /// <summary>
         /// InitializeComponent
         /// </summary>
@@ -54,14 +54,14 @@ namespace Color_Test_WPF_App_NET_Framework {
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Color_Test_WPF_App_NET_Framework;component/about.xaml", System.UriKind.Relative);
-            
+
             #line 1 "..\..\About.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-            
+
             #line default
             #line hidden
         }
-        
+
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,26 +72,26 @@ namespace Color_Test_WPF_App_NET_Framework {
             switch (connectionId)
             {
             case 1:
-            
+
             #line 38 "..\..\About.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.openWebsite);
-            
+
             #line default
             #line hidden
             return;
             case 2:
-            
+
             #line 39 "..\..\About.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.openSource);
-            
+
             #line default
             #line hidden
             return;
             case 3:
-            
+
             #line 40 "..\..\About.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.openEmail);
-            
+
             #line default
             #line hidden
             return;
@@ -100,4 +100,3 @@ namespace Color_Test_WPF_App_NET_Framework {
         }
     }
 }
-
