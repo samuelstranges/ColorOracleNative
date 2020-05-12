@@ -10,12 +10,11 @@ using System.Timers;
 using Timer = System.Timers.Timer;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 using Button = System.Windows.Forms.Button;
-using System.Windows.Forms;
 using Color = System.Drawing.Color;
 using Pen = System.Drawing.Pen;
+using Icon = System.Drawing.Icon;
 using Rectangle = System.Drawing.Rectangle;
 using NHotkey.Wpf;
-using System;
 using System.Runtime.InteropServices;
 using ContextMenu = System.Windows.Forms.ContextMenu;
 
@@ -111,53 +110,68 @@ namespace Color_Test_WPF_App_NET_Framework
 
         public void clickWindow(object sender, RoutedEventArgs e){realTime();}
 
-        private void openSendFeedback(object sender, RoutedEventArgs e){System.Diagnostics.Process.Start("https://docs.google.com/forms/d/1wsFwdaKLq53ZWrAkwraCXpOVz41yqyYolzkifKklSkc/edit");}
-
-        private void openAbout(object sender, RoutedEventArgs e){About aboutPage = new About(); aboutPage.Show();}
-        private void openHelp(object sender, RoutedEventArgs e){System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");}
-
-
-                private void Button_Click(object sender, EventArgs e)
-                {
-                    this.WindowState = System.Windows.WindowState.Minimized;
-                    this.nIcon.Icon = new Icon("../../images/trayicon.ico");
-                    contextMenu1.MenuItems.Add("Help", (s, d) => this.openHelp(s, d));
-                    contextMenu1.MenuItems.Add("About", (s, d) => this.openAbout(s, d));
-                    contextMenu1.MenuItems.Add("Live Mode", (s, d) => this.clickWindow(s, d));
-                    contextMenu1.MenuItems.Add("openSendFeedback", (s, d) => this.openSendFeedback(s, d));
-                    contextMenu1.MenuItems.Add("Deuteranopia", (s, d) => this.setDu(s, d));
-                    contextMenu1.MenuItems.Add("Protanopia", (s, d) => this.setPro(s, d));
-                    contextMenu1.MenuItems.Add("Tritanopia", (s, d) => this.setTri(s, d));
-                    contextMenu1.MenuItems.Add("Grayscale", (s, d) => this.setGr(s, d));
-                    contextMenu1.MenuItems.Add("ScreenMode", (s, d) => this.Screenshot(s, d));
+        private void openSendFeedback(object sender, RoutedEventArgs e) { feedbackOpener(); }
+        private void openAbout(object sender, RoutedEventArgs e) { aboutOpener(); }
+        private void openHelp(object sender, RoutedEventArgs e){ helpOpener(); }
 
 
 
-                    nIcon.ContextMenu = contextMenu1;
-
-                    /*
-                    this.nIcon.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
-                    this.nIcon.ContextMenuStrip.Items.Add("Deuteranopia(Common)");
-                    this.nIcon.ContextMenuStrip.Items.Add("Protanopia(Rare)");
-                    this.nIcon.ContextMenuStrip.Items.Add("Tritanopia(Very Rare)");
-                    this.nIcon.ContextMenuStrip.Items.Add("Grayscale");
-                    this.nIcon.ContextMenuStrip.Items.Add("Screenshot Mode");
-                    this.nIcon.ContextMenuStrip.Items.Add("Live Mode");
-                    this.nIcon.ContextMenuStrip.Items.Add("About");
-                    this.nIcon.ContextMenu.MenuItems.AddRange("Help", null, (s, e) => this.openAbout(s, e));
-                    */
-                    this.nIcon.Visible = true;
-                    this.nIcon.ShowBalloonTip(5000, "Hi", "This is a BallonTip from Windows Notification", ToolTipIcon.Info);
-                    this.nIcon.Text = "Right Click";
+        private void eventArgHelpOpen(object sender, EventArgs e) { helpOpener(); }
+        private void eventArgAboutOpen(object sender, EventArgs e) { aboutOpener(); }
+        private void eventArgFeedback(object sender, EventArgs e) { feedbackOpener(); }
+        private void eventArgSetDeu(object sender, EventArgs e) { deuSetter(); }
+        private void eventArgSetPro(object sender, EventArgs e) { proSetter(); }
+        private void eventArgSetTri(object sender, EventArgs e) { triSetter(); }
+        private void eventArgSetGr(object sender, EventArgs e) { grSetter(); }
 
 
-                }
+
+        private void feedbackOpener() { System.Diagnostics.Process.Start("https://docs.google.com/forms/d/1wsFwdaKLq53ZWrAkwraCXpOVz41yqyYolzkifKklSkc/edit"); }
+
+        private void helpOpener() { System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ"); }
+
+        private void aboutOpener() { About aboutPage = new About(); aboutPage.Show(); }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Minimized;
+            this.nIcon.Icon = new Icon("../../images/trayicon.ico");
+            contextMenu1.MenuItems.Add("Help", (s, d) => this.eventArgHelpOpen(s, d));
+            contextMenu1.MenuItems.Add("About", (s, d) => this.eventArgAboutOpen(s, d));
+            contextMenu1.MenuItems.Add("Live Mode", (s, d) => this.toggleRealTimeGS(s, d));
+            contextMenu1.MenuItems.Add("openSendFeedback", (s, d) => this.eventArgFeedback(s, d));
+            contextMenu1.MenuItems.Add("Deuteranopia", (s, d) => this.eventArgSetDeu(s, d));
+            contextMenu1.MenuItems.Add("Protanopia", (s, d) => this.eventArgSetPro(s, d));
+            contextMenu1.MenuItems.Add("Tritanopia", (s, d) => this.eventArgSetTri(s, d));
+            contextMenu1.MenuItems.Add("Grayscale", (s, d) => this.eventArgSetGr(s, d));
+            contextMenu1.MenuItems.Add("ScreenMode", (s, d) => this.screenshotGS(s, d));
 
 
-                void window_maximize() {
-                    this.WindowState = WindowState.Maximized;
+            nIcon.ContextMenu = contextMenu1;
+
+            /*
+            this.nIcon.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.nIcon.ContextMenuStrip.Items.Add("Deuteranopia(Common)");
+            this.nIcon.ContextMenuStrip.Items.Add("Protanopia(Rare)");
+            this.nIcon.ContextMenuStrip.Items.Add("Tritanopia(Very Rare)");
+            this.nIcon.ContextMenuStrip.Items.Add("Grayscale");
+            this.nIcon.ContextMenuStrip.Items.Add("Screenshot Mode");
+            this.nIcon.ContextMenuStrip.Items.Add("Live Mode");
+            this.nIcon.ContextMenuStrip.Items.Add("About");
+            this.nIcon.ContextMenu.MenuItems.AddRange("Help", null, (s, e) => this.openAbout(s, e));
+            */
+            this.nIcon.Visible = true;
+            this.nIcon.ShowBalloonTip(5000, "Hi", "This is a BallonTip from Windows Notification", ToolTipIcon.Info);
+            this.nIcon.Text = "Right Click";
 
 
-                }
+        }
+
+
+        void window_maximize() {
+            this.WindowState = WindowState.Maximized;
+
+
+        }
     }
 }
