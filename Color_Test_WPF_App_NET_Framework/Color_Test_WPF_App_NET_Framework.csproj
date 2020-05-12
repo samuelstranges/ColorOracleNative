@@ -84,6 +84,7 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="filterInfo.cs" />
     <Compile Include="Live.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +107,7 @@
     <Compile Include="Save_Screenshot.Designer.cs">
       <DependentUpon>Save_Screenshot.cs</DependentUpon>
     </Compile>
+    <Compile Include="TheTrayIcon.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
