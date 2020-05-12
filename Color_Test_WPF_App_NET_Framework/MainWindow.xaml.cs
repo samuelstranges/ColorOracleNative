@@ -32,15 +32,6 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
 
-        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true; // this will prevent to close
-            this.Hide(); // it'll hide the window
-            // here now you can call any method
-        }
-
-
-
         public MainWindow()
         {
             InitializeComponent();
@@ -55,6 +46,8 @@ namespace Color_Test_WPF_App_NET_Framework
             RoutedCommand keyHelp = new RoutedCommand(); keyHelp.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyHelp, openHelp));
 
         }
+
+        private void dontClose(object sender, System.ComponentModel.CancelEventArgs e) { e.Cancel = true; Hide(); } //Minimise Instead
 
         //Public, so that the trayicon can also get these methods.
         public void toggleRealTimeGS(object sender, EventArgs t) { realTime(); }

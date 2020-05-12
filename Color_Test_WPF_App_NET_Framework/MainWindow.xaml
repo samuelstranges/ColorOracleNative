@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Color_Test_WPF_App_NET_Framework"
         mc:Ignorable="d"
-        Closing="OnClosing"
+        Closing="dontClose"
         ResizeMode="CanMinimize"
         Title="Color Oracle" Height="400" Width="400">
 
