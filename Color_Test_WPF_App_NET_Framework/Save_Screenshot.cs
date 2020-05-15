@@ -1,10 +1,7 @@
-﻿using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Color_Test_WPF_App_NET_Framework
@@ -19,10 +16,13 @@ namespace Color_Test_WPF_App_NET_Framework
             InitializeComponent();
             
             Rectangle rect = new Rectangle(x, y, w, h);
-            bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
+            bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format24bppRgb);
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, s, CopyPixelOperation.SourceCopy);
+
+
             bmp = FilterImg(bmp);
+
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Size = bmp.Size;
             
@@ -33,108 +33,86 @@ namespace Color_Test_WPF_App_NET_Framework
 
             
         }
-        private static Bitmap FilterImg(Bitmap bmp)
+        private Bitmap FilterImg(Bitmap image)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            Simulator simulator = new Simulator();
+            int[] intArray = getIntArray(image);
+            int[] result = simulator.Simulate(intArray);
+            byte[] byteArray = intArrayToByteArray(result);
 
-            double GAMMA = 2.2;
-            double GAMMA_INV = 1 / GAMMA;
+            return (Bitmap) imageFromRawBgrArray(byteArray, image.Width, image.Height, PixelFormat.Format24bppRgb);
+        }
 
-            Matrix<double> RGB_TO_LMS_MATRIX = DenseMatrix.OfArray(new double[,] {
-                { 17.8824, 43.5161, 4.11935 },
-                { 3.45565, 27.1554, 3.86714 },
-                { 0.0299566, 0.184309, 1.46709 }
-            });
+        private int[] getIntArray(Bitmap image)
+        {
+            int width = image.Width;
+            int height = image.Height;
+            int[] rgbArray = new int[width * height];
+            const int PixelWidth = 3;
 
-            Matrix<double> RGB_TO_LMS_MATRIX_INV = RGB_TO_LMS_MATRIX.Inverse();
+            BitmapData data = image.LockBits(
+                new Rectangle(0, 0, width, height),
+                ImageLockMode.ReadOnly,
+                PixelFormat.Format24bppRgb
+                );
 
-            Matrix<double> PROTAN_MATRIX = DenseMatrix.OfArray(new double[,] {
-                { 0, 2.02344, -2.52581 },
-                { 0, 1, 0 },
-                { 0, 0, 1 }
-            });
-
-            Matrix<double> DEUTAN_MATRIX = DenseMatrix.OfArray(new double[,] {
-                { 1, 0, 0 },
-                { 0.494207, 0, 1.24827 },
-                { 0, 0, 1 }
-            });
-
-            double[] SRGB_TO_LRGB = generate_SRGB_TO_LRGB_TABLE();
-
-
-            // string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\awesome.jpg";
-            Bitmap image = bmp;
-
-            unsafe
+            byte[] pixelData = new byte[data.Stride];
+            for (int scanline = 0; scanline < data.Height; scanline++)
             {
-                BitmapData bitmapData = image.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.ReadWrite, image.PixelFormat);
-                int bytesPerPixel = Bitmap.GetPixelFormatSize(image.PixelFormat) / 8;
-                int heightInPixels = bitmapData.Height;
-                int widthInBytes = bitmapData.Width * bytesPerPixel;
-
-
-                byte* PtrFirstPixel = (byte*)bitmapData.Scan0;
-
-                Parallel.For(0, heightInPixels, y =>
+                Marshal.Copy(data.Scan0 + (scanline * data.Stride), pixelData, 0, data.Stride);
+                for (int pixeloffset = 0; pixeloffset < data.Width; pixeloffset++)
                 {
-                    byte* currentLine = PtrFirstPixel + (y * bitmapData.Stride);
-                    for (int x = 0; x < widthInBytes; x = x + bytesPerPixel)
-                    {
-                        int oldBlue = currentLine[x];
-                        int oldGreen = currentLine[x + 1];
-                        int oldRed = currentLine[x + 2];
-
-                        // process
-                        Matrix<double> lrgb = DenseMatrix.OfArray(new double[,] {
-                        { SRGB_TO_LRGB[oldRed] },
-                        { SRGB_TO_LRGB[oldGreen] },
-                        { SRGB_TO_LRGB[oldBlue] }
-                    });
-
-                        Matrix<double> lms = RGB_TO_LMS_MATRIX.Multiply(lrgb);
-                        Matrix<double> adjusted_lms = PROTAN_MATRIX.Multiply(lms);
-                        Matrix<double> tmp = RGB_TO_LMS_MATRIX_INV.Multiply(adjusted_lms);
-
-                        int newRed = apply_gamma(tmp[0, 0]);
-                        int newGreen = apply_gamma(tmp[1, 0]);
-                        int newBlue = apply_gamma(tmp[2, 0]);
-
-                        currentLine[x] = (byte)newBlue;
-                        currentLine[x + 1] = (byte)newGreen;
-                        currentLine[x + 2] = (byte)newRed;
-                    }
-                });
-
-                image.UnlockBits(bitmapData);
+                    // data is stored in memory as BGR.
+                    // We want RGB, so we must do some bit-shuffling.
+                    rgbArray[(scanline * width) + pixeloffset] =
+                        (pixelData[pixeloffset * PixelWidth + 2] << 16) +   // R 
+                        (pixelData[pixeloffset * PixelWidth + 1] << 8) +    // G
+                        pixelData[pixeloffset * PixelWidth];                // B
+                }
             }
-
-            //image.Save(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\new_awesome.jpg");
-
-            stopwatch.Stop();
-            Console.WriteLine("process is done! time used: {0}ms", stopwatch.ElapsedMilliseconds);
-            Console.ReadLine();
-            return image;
+            image.UnlockBits(data);
+            return rgbArray;
         }
-        private static int apply_gamma(double val)
-        {
-            return Convert.ToInt32(255 * Math.Pow(val, (1 / 2.2)));
-        }
-        private static double[] generate_SRGB_TO_LRGB_TABLE()
-        {
-            double[] SRGB_TO_LRGB = new double[256];
-            double GAMMA = 2.2;
 
-            for (int i = 0; i < 256; i++)
+        private byte[] intArrayToByteArray(int[] data)
+        {
+            int length = data.Length;
+            byte[] dataBytes = new byte[length * 3];
+            for (int i = 0; i < length; i++)
             {
-                double col_without_gamma = Math.Pow(i / 255.0, GAMMA);
-                double lin = 0.992052 * col_without_gamma + 0.003974;
-                SRGB_TO_LRGB[i] = lin;
+                int byteIndex = i * 3;
+                int val = data[i];
+                // This code clears out everything but a specific part of the value
+                // and then shifts the remaining piece down to the lowest byte
+                dataBytes[byteIndex + 0] = (byte)(val & 0xFF); // B
+                dataBytes[byteIndex + 1] = (byte)((val & 0xFF00) >> 08); // G
+                dataBytes[byteIndex + 2] = (byte)((val & 0xFF0000) >> 16); // R
             }
-            return SRGB_TO_LRGB;
+            return dataBytes;
         }
-     
+
+        private Image imageFromRawBgrArray(byte[] arr, int width, int height, PixelFormat pixelFormat)
+        {
+            var output = new Bitmap(width, height, pixelFormat);
+            var rect = new Rectangle(0, 0, width, height);
+            var bmpData = output.LockBits(rect, ImageLockMode.ReadWrite, output.PixelFormat);
+
+            // Row-by-row copy ** else it would generate incomplete image **
+            var arrRowLength = width * Image.GetPixelFormatSize(output.PixelFormat) / 8;
+            var ptr = bmpData.Scan0;
+            for (var i = 0; i < height; i++)
+            {
+                Marshal.Copy(arr, i * arrRowLength, ptr, arrRowLength);
+                ptr += bmpData.Stride;
+            }
+
+            output.UnlockBits(bmpData);
+            return output;
+        }
+
+
+
+
         private void Button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();

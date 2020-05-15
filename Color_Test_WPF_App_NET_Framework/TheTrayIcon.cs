@@ -1,29 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-
 using NHotkey.Wpf;
-using System;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Forms;
-using System.Timers;
-using Timer = System.Timers.Timer;
-using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
-using Button = System.Windows.Forms.Button;
-using Color = System.Drawing.Color;
-using Pen = System.Drawing.Pen;
 using Icon = System.Drawing.Icon;
-using Rectangle = System.Drawing.Rectangle;
-using System.Runtime.InteropServices;
 using ContextMenu = System.Windows.Forms.ContextMenu;
 
 namespace Color_Test_WPF_App_NET_Framework

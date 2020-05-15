@@ -107,6 +107,7 @@
     <Compile Include="Save_Screenshot.Designer.cs">
       <DependentUpon>Save_Screenshot.cs</DependentUpon>
     </Compile>
+    <Compile Include="Simulator.cs" />
     <Compile Include="TheTrayIcon.cs" />
     <Page Include="About.xaml">
       <SubType>Designer</SubType>

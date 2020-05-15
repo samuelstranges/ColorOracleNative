@@ -1,21 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Forms;
-using System.Timers;
-using Timer = System.Timers.Timer;
-using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
-using Button = System.Windows.Forms.Button;
-using Color = System.Drawing.Color;
-using Pen = System.Drawing.Pen;
-using Icon = System.Drawing.Icon;
-using Rectangle = System.Drawing.Rectangle;
-using System.Runtime.InteropServices;
-using ContextMenu = System.Windows.Forms.ContextMenu;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
@@ -100,12 +85,19 @@ namespace Color_Test_WPF_App_NET_Framework
 
         private void runScreenshot()
         {
-            SelectArea obj = new SelectArea();
-            //if u wanna hide the main window, uncomment the bottom line
-            //this.Visibility = Visibility.Hidden;
-            //objScreenshot.Opacity = 0.9;
-            //obj.Opacity = 0.99;
-            obj.Show();
+            if (color_filter_key > 0 && color_filter_key < 5)
+            {
+                SelectArea obj = new SelectArea();
+                //if u wanna hide the main window, uncomment the bottom line
+                //this.Visibility = Visibility.Hidden;
+                //objScreenshot.Opacity = 0.9;
+                //obj.Opacity = 0.99;
+                obj.Show();
+            }
+            else
+            {
+                selectFirstMsgBox();
+            }
         }
 
 
@@ -119,10 +111,20 @@ namespace Color_Test_WPF_App_NET_Framework
 
             if (!mode.status)
             {
-                color_filter_key = 0;
-                chosenType.Content = "Chosen type: None";
+                if (color_filter_key == 0) selectFirstMsgBox();
+                else
+                {
+                    color_filter_key = 0;
+                    //mode.color_filter_key = color_filter_key;
+                    chosenType.Content = "Chosen type: None";
+                }
+              
             }
+        }
 
+        private void selectFirstMsgBox()
+        {
+            System.Windows.Forms.MessageBox.Show("Please Select a ColorBlindness Type Before You Proceed.");
         }
 
         public void clickWindow(object sender, RoutedEventArgs e) { realTime(); }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows.Controls;
+﻿using System.Runtime.InteropServices;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
