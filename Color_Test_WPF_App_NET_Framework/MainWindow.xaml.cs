@@ -50,7 +50,7 @@ namespace Color_Test_WPF_App_NET_Framework
         public void toggleRealTimeGS(object sender, EventArgs t) { realTime(); }
         public void screenshotGS(object sender, EventArgs t) { runScreenshot(); }
         public void switchTypesGS(object sender, EventArgs t){
-            switch (mode.color_filter_key){
+            switch (color_filter_key){
                 case 0: deuSetter();   break;
                 case 1: proSetter();   break;
                 case 2: triSetter();   break;
@@ -65,11 +65,6 @@ namespace Color_Test_WPF_App_NET_Framework
         private void setTri(object sender, RoutedEventArgs e) { triSetter(); }
         private void setGr(object sender, RoutedEventArgs e) { grSetter(); }
 
-        private void refreshLive(int key)
-        {
-            mode.color_filter_key = key;
-            mode.live();
-        }
 
         private void normalSetter() 
         {
@@ -81,25 +76,25 @@ namespace Color_Test_WPF_App_NET_Framework
         {
             color_filter_key = 1;
             chosenType.Content = "Chosen type: Deuteranopia";
-            if (mode.status) refreshLive(1);
+            if (mode.status) mode.live();
         }
         private void proSetter()
         {
             color_filter_key = 2;
             chosenType.Content = "Chosen type: Protanopia";
-            if (mode.status) refreshLive(2);      
+            if (mode.status) mode.live();
         }
         private void triSetter() 
         {
             color_filter_key = 3;
             chosenType.Content = "Chosen type: Tritanopia";
-            if (mode.status) refreshLive(3);           
+            if (mode.status) mode.live();
         }
         private void grSetter()
         {
             color_filter_key = 4;
             chosenType.Content = "Chosen type: Grayscale";
-            if (mode.status) refreshLive(4);          
+            if (mode.status) mode.live();
         }
         private void Screenshot(object sender, RoutedEventArgs e) { runScreenshot(); }
 
@@ -114,12 +109,10 @@ namespace Color_Test_WPF_App_NET_Framework
         }
 
 
-
         private void realTime()
         {
             if (color_filter_key > 0 && color_filter_key < 5)
             {
-                mode.color_filter_key = color_filter_key;
                 mode.status = !mode.status;
                 mode.live();
             }
@@ -127,7 +120,6 @@ namespace Color_Test_WPF_App_NET_Framework
             if (!mode.status)
             {
                 color_filter_key = 0;
-                mode.color_filter_key = color_filter_key;
                 chosenType.Content = "Chosen type: None";
             }
 

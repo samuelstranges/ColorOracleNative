@@ -96,6 +96,7 @@ namespace Color_Test_WPF_App_NET_Framework
 
             if (status)
             {
+                color_filter_key = MainWindow.color_filter_key;
                 switch (color_filter_key)
                 {
                     case 1:
