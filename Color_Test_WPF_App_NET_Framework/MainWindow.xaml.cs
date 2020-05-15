@@ -91,8 +91,8 @@ namespace Color_Test_WPF_App_NET_Framework
 
         private void realTime()
         {
-            if (!mode_status)
-            { //Turn on if not already on
+            if (!mode_status && mode.color_filter_key != 0)
+            { //Turn on if not already on and type has been selected
                 mode_status = true;
                 changeMode();
             }
@@ -130,6 +130,5 @@ namespace Color_Test_WPF_App_NET_Framework
 
         private void aboutOpener() { About aboutPage = new About(); aboutPage.Show(); }
 
-        }
     }
 }
