@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Windows.Controls;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
@@ -25,10 +26,12 @@ namespace Color_Test_WPF_App_NET_Framework
         }
 
         public int color_filter_key;
-        public Program1(int key) {
-            this.color_filter_key = key;
-            
+        public bool status = false;
+        public Program1(int key)
+        {
+            color_filter_key = key;
         }
+
         
         public void live()
         {
@@ -90,28 +93,29 @@ namespace Color_Test_WPF_App_NET_Framework
             };
 
             MagInitialize();
-            switch (this.color_filter_key)
-            {
-                case 0:
-                    MagSetFullscreenColorEffect(ref original);
-                    break;
-                case 1:
-                    MagSetFullscreenColorEffect(ref deuteran);
-                    break;
-                case 2:
-                    MagSetFullscreenColorEffect(ref protan);
-                    break;
-                case 3:
-                    MagSetFullscreenColorEffect(ref tritan);
-                    break;
-                case 4:
-                    MagSetFullscreenColorEffect(ref grayscale);
-                    break;
 
+            if (status)
+            {
+                switch (color_filter_key)
+                {
+                    case 1:
+                        MagSetFullscreenColorEffect(ref deuteran);
+                        break;
+                    case 2:
+                        MagSetFullscreenColorEffect(ref protan);
+                        break;
+                    case 3:
+                        MagSetFullscreenColorEffect(ref tritan);
+                        break;
+                    case 4:
+                        MagSetFullscreenColorEffect(ref grayscale);
+                        break;
+                }
             }
-                
-            Console.ReadLine();
-            
+            else
+            {
+                MagSetFullscreenColorEffect(ref original);
+            }
         }
       
     }
