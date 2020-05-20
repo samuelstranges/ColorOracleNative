@@ -73,20 +73,10 @@ namespace Color_Test_WPF_App_NET_Framework
                 case 1: proSetter();   break;
                 case 2: triSetter();   break;
                 case 3: grSetter();    break;
-                case 4: normalSetter();break;
+                case 4: deuSetter();   break;
             }
         }
 
-
-
-        /// <summary>
-        /// Sets the color filter to normal, and if real time is called, run it
-        /// </summary>
-        private void normalSetter() {
-            if (mode.status) realTime();
-            color_filter_key = 0;
-            chosenType.Content = "Chosen type: None";
-        }
 
         /// <summary>
         /// Sets the color filter to deuteranopia, and if real time is called, run it
@@ -164,17 +154,7 @@ namespace Color_Test_WPF_App_NET_Framework
                 mode.live();
             }
 
-            if (!mode.status)
-            {
-                if (color_filter_key == 0) selectFirstMsgBox();
-                else
-                {
-                    color_filter_key = 0;
-                    //mode.color_filter_key = color_filter_key;
-                    chosenType.Content = "Chosen type: None";
-                }
-              
-            }
+            if (!mode.status && color_filter_key == 0) selectFirstMsgBox();
         }
 
 
