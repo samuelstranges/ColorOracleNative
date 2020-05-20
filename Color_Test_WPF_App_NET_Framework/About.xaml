@@ -10,7 +10,7 @@
         Title="About" Height="250" Width="250">
 
     <Grid>
-        <Image HorizontalAlignment="Center"  Margin="90,10,89.2,0" VerticalAlignment="Top" RenderTransformOrigin="-0.631,0.35" Source="icon48x48.png" />
+        <Image HorizontalAlignment="Center"  Margin="90,10,89.2,0" VerticalAlignment="Top" RenderTransformOrigin="-0.631,0.35" Source="icon_big.ico" />
         <TextBlock TextAlignment="Center" Margin="0,90,0.2,24">
             Welcome to Color Oracle <LineBreak/><LineBreak/>
             Version 0.2

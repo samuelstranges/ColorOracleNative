@@ -52,7 +52,7 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
             nIcon.ContextMenu = contextMenu1;
-            nIcon.Icon = new Icon("../../images/trayicon.ico");
+            nIcon.Icon = Properties.Resources.menuIcon;
             nIcon.Visible = true;
             nIcon.Text = "Color Oracle";
         }
