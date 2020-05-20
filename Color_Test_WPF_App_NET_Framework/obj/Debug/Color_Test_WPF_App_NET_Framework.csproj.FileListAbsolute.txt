@@ -126,10 +126,8 @@ C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Fram
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe.config
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.pdb
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\MathNet.Numerics.dll
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.dll
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.Wpf.dll
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\MathNet.Numerics.xml
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.pdb
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.Wpf.pdb
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\About.baml

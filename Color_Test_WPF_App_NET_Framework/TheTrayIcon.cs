@@ -7,9 +7,22 @@ using ContextMenu = System.Windows.Forms.ContextMenu;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
+    /// <summary>
+    /// Logic for the trayicon
+    /// </summary>
     class TheTrayIcon{
+
+        /// <summary>
+        /// The Trayicon contains a single instance of a window class, which has public methods that interact with the trayicon.
+        /// Therefore, the trayicon holds the window, rather than the window holding the trayicon
+        /// The purpose of this is that you are able to close the main window, while still being able to interact with the application.
+        /// </summary>
         private MainWindow theWindow = new MainWindow();
 
+        /// <summary>
+        /// The constructor for the trayicon
+        /// Here, we set up the mainwindow, the trayicon and functions, and global keyboard shortcuts
+        /// </summary>
         public TheTrayIcon() {
 
             theWindow.Show();
@@ -24,6 +37,7 @@ namespace Color_Test_WPF_App_NET_Framework
             HotkeyManager.Current.AddOrReplace("switchTypesGS", Key.N, ModifierKeys.Control | ModifierKeys.Shift, theWindow.switchTypesGS);
 
 
+            //Most of these functions use the MainWindow's public functions
             MenuItem mainWindow = new MenuItem("Color Oracle", (s, d) => openMainWindow(s, d));
             MenuItem toggleRealTime = new MenuItem("Live Mode", (s, d) => theWindow.toggleRealTimeGS(s, d)); toggleRealTime.Shortcut = Shortcut.CtrlShiftL;
             MenuItem screenshot = new MenuItem("Screenshot", (s, d) => theWindow.screenshotGS(s, d));        screenshot.Shortcut = Shortcut.CtrlShiftM;
@@ -44,10 +58,20 @@ namespace Color_Test_WPF_App_NET_Framework
         }
 
 
+        /// <summary>
+        /// Close the trayicon (by shutting down the application)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void close(object sender, EventArgs e){
             System.Windows.Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// As the MainWindow can hide itself via the close button, we allow the trayicon to show the main window again.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openMainWindow(object sender, EventArgs e) { this.theWindow.Show(); }
 
     }
