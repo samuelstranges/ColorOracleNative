@@ -41,6 +41,9 @@
   <PropertyGroup>
     <ApplicationIcon>icon_big.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NHotkey, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
       <HintPath>packages\NHotkey.2.0.1\lib\net45\NHotkey.dll</HintPath>
@@ -138,6 +141,7 @@
     <EmbeddedResource Include="Save_Screenshot.resx">
       <DependentUpon>Save_Screenshot.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
