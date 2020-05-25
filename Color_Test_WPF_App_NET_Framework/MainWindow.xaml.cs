@@ -166,13 +166,13 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Open the feedback page via an external web browser
         /// </summary>
-        private void feedbackOpener() { System.Diagnostics.Process.Start("https://docs.google.com/forms/d/1wsFwdaKLq53ZWrAkwraCXpOVz41yqyYolzkifKklSkc/edit"); }
+        private void feedbackOpener() { System.Diagnostics.Process.Start("https://docs.google.com/forms/d/e/1FAIpQLSc4TDuoVZX2SN-VAkzextT5rSZFY_5ZM2-4B_Z6BxHVwHsozQ/viewform"); }
 
 
         /// <summary>
         /// Load a youtube video in an external browser about Color Oracle (currently a rickroll placeholder)
         /// </summary>
-        private void helpOpener() { System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ"); }
+        private void helpOpener() { System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=f5dhUYKFQic"); }
 
         /// <summary>
         /// Open the about page by creating a new page object
