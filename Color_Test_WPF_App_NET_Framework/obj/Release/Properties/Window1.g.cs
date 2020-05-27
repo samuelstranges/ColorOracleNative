@@ -53,7 +53,7 @@ namespace Color_Test_WPF_App_NET_Framework.Properties {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Color_Test_WPF_App_NET_Framework;component/properties/window1.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ColorOracle;component/properties/window1.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Properties\Window1.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
