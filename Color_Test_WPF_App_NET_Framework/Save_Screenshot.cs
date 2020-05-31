@@ -126,9 +126,5 @@ namespace Color_Test_WPF_App_NET_Framework
             this.Hide();
         }
 
-        private void Save_Screenshot_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

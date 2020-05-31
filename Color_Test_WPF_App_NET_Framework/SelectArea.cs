@@ -109,19 +109,6 @@ namespace Color_Test_WPF_App_NET_Framework
 
         }
         
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            
-           
-            
-
-            
-        }
-        
-        private void Button3_Click(object sender, EventArgs e)
-        {
-
-        }
 
        
     }
