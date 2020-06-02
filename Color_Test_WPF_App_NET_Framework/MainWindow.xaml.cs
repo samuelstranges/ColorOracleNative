@@ -21,6 +21,32 @@ namespace Color_Test_WPF_App_NET_Framework
         public Program1 mode = new Program1(color_filter_key);
 
 
+        //Keyboard Shortcuts
+        int currentKeyboardShortcuts = 0;
+        RoutedCommand keyPro = new RoutedCommand();
+        RoutedCommand keyDu = new RoutedCommand();
+        RoutedCommand keyTri = new RoutedCommand();
+        RoutedCommand keyGr = new RoutedCommand();
+        RoutedCommand keyAbout = new RoutedCommand();
+        RoutedCommand keyFeedback = new RoutedCommand();
+        RoutedCommand keyHelp = new RoutedCommand();
+
+        KeyGesture gestDu = new KeyGesture(Key.Q, ModifierKeys.Control);
+        KeyGesture gestPro = new KeyGesture(Key.W, ModifierKeys.Control);
+        KeyGesture gestTri = new KeyGesture(Key.E, ModifierKeys.Control);
+        KeyGesture gestGr = new KeyGesture(Key.R, ModifierKeys.Control);
+        KeyGesture gestAbout = new KeyGesture(Key.A, ModifierKeys.Control);
+        KeyGesture gestFeed = new KeyGesture(Key.G, ModifierKeys.Control);
+        KeyGesture gestHelp = new KeyGesture(Key.H, ModifierKeys.Control);
+
+        KeyGesture altGestDu = new KeyGesture(Key.V, ModifierKeys.Control);
+        KeyGesture altGestPro = new KeyGesture(Key.B, ModifierKeys.Control);
+        KeyGesture altGestTri = new KeyGesture(Key.N, ModifierKeys.Control);
+        KeyGesture altGestGr = new KeyGesture(Key.M, ModifierKeys.Control);
+        KeyGesture altGestAbout = new KeyGesture(Key.I, ModifierKeys.Control);
+        KeyGesture altGestFeed = new KeyGesture(Key.O, ModifierKeys.Control);
+        KeyGesture altGestHelp = new KeyGesture(Key.P, ModifierKeys.Control);
+
         /// <summary>
         /// Initialise the window
         /// In addition, setup the local keyboard shortcuts via input gestures and command bindings
@@ -28,16 +54,96 @@ namespace Color_Test_WPF_App_NET_Framework
         public MainWindow() {
             InitializeComponent();
 
-            //Keyboard Shortcuts (Local Main Window Shortcuts)
-            RoutedCommand keyPro = new RoutedCommand(); keyPro.InputGestures.Add(new KeyGesture(Key.W, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyPro, setPro));
-            RoutedCommand keyDu = new RoutedCommand(); keyDu.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyDu, setDeu));
-            RoutedCommand keyTri = new RoutedCommand(); keyTri.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyTri, setTri));
-            RoutedCommand keyGr = new RoutedCommand(); keyGr.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyGr, setGr));
-            RoutedCommand keyAbout = new RoutedCommand(); keyAbout.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyAbout, openAbout));
-            RoutedCommand keyFeedback = new RoutedCommand(); keyFeedback.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyFeedback, openSendFeedback));
-            RoutedCommand keyHelp = new RoutedCommand(); keyHelp.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control)); CommandBindings.Add(new CommandBinding(keyHelp, openHelp));
+            keyDu.InputGestures.Add(gestDu);
+            keyPro.InputGestures.Add(gestPro);
+            keyTri.InputGestures.Add(gestTri);
+            keyGr.InputGestures.Add(gestGr);
+            keyAbout.InputGestures.Add(gestAbout);
+            keyFeedback.InputGestures.Add(gestFeed);
+            keyHelp.InputGestures.Add(gestHelp);
+
+            //Initialise Keyboard Shortcuts (Local Main Window Shortcuts)
+            CommandBindings.Add(new CommandBinding(keyDu, setDeu));
+            CommandBindings.Add(new CommandBinding(keyPro, setPro));
+            CommandBindings.Add(new CommandBinding(keyTri, setTri));
+            CommandBindings.Add(new CommandBinding(keyGr, setGr));
+            CommandBindings.Add(new CommandBinding(keyAbout, openAbout));
+            CommandBindings.Add(new CommandBinding(keyFeedback, openSendFeedback));
+            CommandBindings.Add(new CommandBinding(keyHelp, openHelp));
+
 
         }
+
+        private void setAltKeyboardShortcuts(){
+            //Remove old ones
+            keyDu.InputGestures.Remove(gestDu);
+            keyPro.InputGestures.Remove(gestPro);
+            keyTri.InputGestures.Remove(gestTri);
+            keyGr.InputGestures.Remove(gestGr);
+            keyAbout.InputGestures.Remove(gestAbout);
+            keyFeedback.InputGestures.Remove(gestFeed);
+            keyHelp.InputGestures.Remove(gestHelp);
+
+            //Setup alternate keyboard shortcuts (customisation for user)
+
+            keyDu.InputGestures.Add(altGestDu);
+            keyPro.InputGestures.Add(altGestPro);
+            keyTri.InputGestures.Add(altGestTri);
+            keyGr.InputGestures.Add(altGestGr);
+            keyAbout.InputGestures.Add(altGestAbout);
+            keyFeedback.InputGestures.Add(altGestFeed);
+            keyHelp.InputGestures.Add(altGestHelp);
+
+            settingsDeu.InputGestureText = "Ctrl+V";
+            settingsPro.InputGestureText = "Ctrl+B";
+            settingsTri.InputGestureText = "Ctrl+N";
+            settingsGr.InputGestureText = "Ctrl+M";
+            settingsAbout.InputGestureText = "Ctrl+I";
+            settingsFeed.InputGestureText = "Ctrl+O";
+            settingsHelp.InputGestureText = "Ctrl+P";
+        }
+
+        private void setOriginalKeyboardShortcuts(){
+
+            keyDu.InputGestures.Remove(altGestDu);
+            keyPro.InputGestures.Remove(altGestPro);
+            keyTri.InputGestures.Remove(altGestTri);
+            keyGr.InputGestures.Remove(altGestGr);
+            keyAbout.InputGestures.Remove(altGestAbout);
+            keyFeedback.InputGestures.Remove(altGestFeed);
+            keyHelp.InputGestures.Remove(altGestHelp);
+
+            //Setup alternate keyboard shortcuts (customisation for user)
+
+            keyDu.InputGestures.Add(gestDu);
+            keyPro.InputGestures.Add(gestPro);
+            keyTri.InputGestures.Add(gestTri);
+            keyGr.InputGestures.Add(gestGr);
+            keyAbout.InputGestures.Add(gestAbout);
+            keyFeedback.InputGestures.Add(gestFeed);
+            keyHelp.InputGestures.Add(gestHelp);
+
+            settingsDeu.InputGestureText = "Ctrl+Q";
+            settingsPro.InputGestureText = "Ctrl+W";
+            settingsTri.InputGestureText = "Ctrl+E";
+            settingsGr.InputGestureText = "Ctrl+R";
+            settingsAbout.InputGestureText = "Ctrl+A";
+            settingsFeed.InputGestureText = "Ctrl+G";
+            settingsHelp.InputGestureText = "Ctrl+H";
+
+
+
+
+        }
+
+        private void changeShortcuts(object sender, RoutedEventArgs e){
+            if (currentKeyboardShortcuts == 0) { setAltKeyboardShortcuts(); currentKeyboardShortcuts = 1; AltKeyShortBut.IsChecked = true; }
+            else { setOriginalKeyboardShortcuts(); currentKeyboardShortcuts = 0; AltKeyShortBut.IsChecked = false; }
+
+
+
+        }
+
 
         /// <summary>
         /// Instead of closing the application via the close window, we instead want to keep the trayicon running
@@ -304,9 +410,5 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void eventArgExit(object sender, EventArgs e) { System.Windows.Application.Current.Shutdown(); }
-
-
-
-
     }
 }

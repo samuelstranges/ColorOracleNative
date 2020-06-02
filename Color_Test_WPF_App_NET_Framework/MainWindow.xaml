@@ -92,18 +92,19 @@
 
         <Menu Margin="0,0,-0.4,24" >
             <MenuItem Header="File">
-                <MenuItem Header="About" Click="openAbout" InputGestureText="Ctrl+A"/>
-                <MenuItem Header="Send Feedback" Click="openSendFeedback" InputGestureText="Ctrl+G"/>
-                <MenuItem Header="Help" Click="openHelp" InputGestureText="Ctrl+H"/>
+                <MenuItem Name="settingsAbout" Header="About" Click="openAbout" InputGestureText="Ctrl+A"/>
+                <MenuItem Name="settingsFeed" Header="Send Feedback" Click="openSendFeedback" InputGestureText="Ctrl+G"/>
+                <MenuItem Name="settingsHelp" Header="Help" Click="openHelp" InputGestureText="Ctrl+H"/>
             </MenuItem>
 
             <MenuItem Header="Settings">
                 <MenuItem Header="Blindness Type">
-                    <MenuItem Header="Duteranopia" Click="setDeu" InputGestureText="Ctrl+Q"/>
-                    <MenuItem Header="Protanopia" Click="setPro" InputGestureText="Ctrl+W"/>
-                    <MenuItem Header="Tritanopia" Click="setTri" InputGestureText="Ctrl+E"/>
-                    <MenuItem Header="Grayscale" Click="setGr"   InputGestureText="Ctrl+R"/>
+                    <MenuItem Name="settingsDeu" Header="Deuteranopia" Click="setDeu" InputGestureText="Ctrl+Q"/>
+                    <MenuItem Name="settingsPro" Header="Protanopia" Click="setPro" InputGestureText="Ctrl+W"/>
+                    <MenuItem Name="settingsTri" Header="Tritanopia" Click="setTri" InputGestureText="Ctrl+E"/>
+                    <MenuItem Name="settingsGr" Header="Grayscale" Click="setGr" InputGestureText="Ctrl+R"/>
                 </MenuItem>
+                <MenuItem Name="AltKeyShortBut"  Header="Toggle Alternate Keyboard Shortcuts" Click="changeShortcuts" IsChecked="False"/>
             </MenuItem>
 
             <MenuItem Header="Run">
@@ -128,6 +129,7 @@
                     <Image x:Name="VideoImage" Cursor="Hand" Margin="334,255,9.6,65.4" VerticalAlignment="Center" Source="video.png" HorizontalAlignment="Center" ToolTip="Real Time"/>
                 </ControlTemplate>
             </Button.Template>
+            <Button Content="Button" Height="100" Width="75"/>
         </Button>
 
         <Label x:Name="chosenType" Content="Chosen type: None" HorizontalContentAlignment="Center" Height="100" Margin="61,180,61.6,46.4" Grid.Row="1"/>

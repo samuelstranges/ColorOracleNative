@@ -118,14 +118,6 @@ C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Fram
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\MainWindow.g.cs
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Properties\Window1.g.cs
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\App.g.cs
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework_Content.g.cs
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework_MarkupCompile.cache
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework_MarkupCompile.lref
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.exe
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.pdb
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe.config
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.exe
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\Color_Test_WPF_App_NET_Framework.pdb
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.dll
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.Wpf.dll
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\NHotkey.pdb
@@ -133,9 +125,7 @@ C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Fram
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\About.baml
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\MainWindow.baml
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Properties\Window1.baml
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.g.resources
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.SelectArea.resources
-C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.Live.resources
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.Properties.Resources.resources
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.Save_Screenshot.resources
 C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.csproj.GenerateResource.cache
@@ -166,3 +156,12 @@ C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Deb
 C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.exe
 C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.pdb
 C:\Users\user\Desktop\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\Color_Test_WPF_App_NET_Framework.csprojAssemblyReference.cache
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle_Content.g.cs
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle_MarkupCompile.cache
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle_MarkupCompile.lref
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\ColorOracle.exe.config
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\ColorOracle.exe
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\bin\Debug\ColorOracle.pdb
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle.g.resources
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle.exe
+C:\Users\computer\Documents\GitHub\ColorOracleNative\Color_Test_WPF_App_NET_Framework\obj\Debug\ColorOracle.pdb
