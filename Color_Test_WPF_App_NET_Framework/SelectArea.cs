@@ -13,6 +13,7 @@ namespace Color_Test_WPF_App_NET_Framework
             this.DoubleBuffered = true;
             this.Opacity = .5D;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+            WindowState = FormWindowState.Maximized;
         }
         int thickness = 5;
         
