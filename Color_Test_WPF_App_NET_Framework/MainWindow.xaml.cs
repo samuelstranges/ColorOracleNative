@@ -21,8 +21,10 @@ namespace Color_Test_WPF_App_NET_Framework
         public Program1 mode = new Program1(color_filter_key);
 
 
-        //Keyboard Shortcuts
+
         int currentKeyboardShortcuts = 0;
+
+        //Blank Commands
         RoutedCommand keyPro = new RoutedCommand();
         RoutedCommand keyDu = new RoutedCommand();
         RoutedCommand keyTri = new RoutedCommand();
@@ -31,6 +33,7 @@ namespace Color_Test_WPF_App_NET_Framework
         RoutedCommand keyFeedback = new RoutedCommand();
         RoutedCommand keyHelp = new RoutedCommand();
 
+        //Keyboard Gestures
         KeyGesture gestDu = new KeyGesture(Key.Q, ModifierKeys.Control);
         KeyGesture gestPro = new KeyGesture(Key.W, ModifierKeys.Control);
         KeyGesture gestTri = new KeyGesture(Key.E, ModifierKeys.Control);
@@ -38,7 +41,6 @@ namespace Color_Test_WPF_App_NET_Framework
         KeyGesture gestAbout = new KeyGesture(Key.A, ModifierKeys.Control);
         KeyGesture gestFeed = new KeyGesture(Key.G, ModifierKeys.Control);
         KeyGesture gestHelp = new KeyGesture(Key.H, ModifierKeys.Control);
-
         KeyGesture altGestDu = new KeyGesture(Key.V, ModifierKeys.Control);
         KeyGesture altGestPro = new KeyGesture(Key.B, ModifierKeys.Control);
         KeyGesture altGestTri = new KeyGesture(Key.N, ModifierKeys.Control);
@@ -54,6 +56,7 @@ namespace Color_Test_WPF_App_NET_Framework
         public MainWindow() {
             InitializeComponent();
 
+            //Link Keyboard Gestures to Commands
             keyDu.InputGestures.Add(gestDu);
             keyPro.InputGestures.Add(gestPro);
             keyTri.InputGestures.Add(gestTri);
@@ -63,6 +66,7 @@ namespace Color_Test_WPF_App_NET_Framework
             keyHelp.InputGestures.Add(gestHelp);
 
             //Initialise Keyboard Shortcuts (Local Main Window Shortcuts)
+            //Add our bindings to the global list of bindings (enabling them)
             CommandBindings.Add(new CommandBinding(keyDu, setDeu));
             CommandBindings.Add(new CommandBinding(keyPro, setPro));
             CommandBindings.Add(new CommandBinding(keyTri, setTri));
@@ -74,6 +78,9 @@ namespace Color_Test_WPF_App_NET_Framework
 
         }
 
+        /// <summary>
+        /// This function toggles the keyboard shortcuts to an alternate set of keys, by removing the input gestures and giving them new ones
+        /// </summary>
         private void setAltKeyboardShortcuts(){
             //Remove old ones
             keyDu.InputGestures.Remove(gestDu);
@@ -85,7 +92,6 @@ namespace Color_Test_WPF_App_NET_Framework
             keyHelp.InputGestures.Remove(gestHelp);
 
             //Setup alternate keyboard shortcuts (customisation for user)
-
             keyDu.InputGestures.Add(altGestDu);
             keyPro.InputGestures.Add(altGestPro);
             keyTri.InputGestures.Add(altGestTri);
@@ -93,7 +99,8 @@ namespace Color_Test_WPF_App_NET_Framework
             keyAbout.InputGestures.Add(altGestAbout);
             keyFeedback.InputGestures.Add(altGestFeed);
             keyHelp.InputGestures.Add(altGestHelp);
-
+            
+            //Update text in window
             settingsDeu.InputGestureText = "Ctrl+V";
             settingsPro.InputGestureText = "Ctrl+B";
             settingsTri.InputGestureText = "Ctrl+N";
@@ -103,8 +110,12 @@ namespace Color_Test_WPF_App_NET_Framework
             settingsHelp.InputGestureText = "Ctrl+P";
         }
 
+        /// <summary>
+        /// This function toggles the keyboard shortcuts to the original set of keys from the alternate set, by removing the input gestures and giving them new ones
+        /// </summary>
         private void setOriginalKeyboardShortcuts(){
 
+            //Remove Old Input Gestures
             keyDu.InputGestures.Remove(altGestDu);
             keyPro.InputGestures.Remove(altGestPro);
             keyTri.InputGestures.Remove(altGestTri);
@@ -113,8 +124,7 @@ namespace Color_Test_WPF_App_NET_Framework
             keyFeedback.InputGestures.Remove(altGestFeed);
             keyHelp.InputGestures.Remove(altGestHelp);
 
-            //Setup alternate keyboard shortcuts (customisation for user)
-
+            //Add new input gestures
             keyDu.InputGestures.Add(gestDu);
             keyPro.InputGestures.Add(gestPro);
             keyTri.InputGestures.Add(gestTri);
@@ -123,6 +133,7 @@ namespace Color_Test_WPF_App_NET_Framework
             keyFeedback.InputGestures.Add(gestFeed);
             keyHelp.InputGestures.Add(gestHelp);
 
+            //Update text in window
             settingsDeu.InputGestureText = "Ctrl+Q";
             settingsPro.InputGestureText = "Ctrl+W";
             settingsTri.InputGestureText = "Ctrl+E";
@@ -130,18 +141,17 @@ namespace Color_Test_WPF_App_NET_Framework
             settingsAbout.InputGestureText = "Ctrl+A";
             settingsFeed.InputGestureText = "Ctrl+G";
             settingsHelp.InputGestureText = "Ctrl+H";
-
-
-
-
         }
 
+        /// <summary>
+        /// This function toggles the keyboard shortcuts depending on what keyboard shortcuts are currently being used.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void changeShortcuts(object sender, RoutedEventArgs e){
+            //Change the keyboard shortcuts (and update the icon in the main window)
             if (currentKeyboardShortcuts == 0) { setAltKeyboardShortcuts(); currentKeyboardShortcuts = 1; AltKeyShortBut.IsChecked = true; }
             else { setOriginalKeyboardShortcuts(); currentKeyboardShortcuts = 0; AltKeyShortBut.IsChecked = false; }
-
-
-
         }
 
 
@@ -187,8 +197,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Sets the color filter to deuteranopia, and if real time is called, run it
         /// </summary>
-        private void deuSetter()
-        {
+        private void deuSetter(){
             color_filter_key = 1;
             chosenType.Content = "Chosen type: Deuteranopia";
             if (mode.status) mode.live();
@@ -197,8 +206,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Sets the color filter to protanopia, and if real time is called, run it
         /// </summary>
-        private void proSetter()
-        {
+        private void proSetter(){
             color_filter_key = 2;
             chosenType.Content = "Chosen type: Protanopia";
             if (mode.status) mode.live();
@@ -207,8 +215,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Sets the color filter to tritanopia, and if real time is called, run it
         /// </summary>
-        private void triSetter() 
-        {
+        private void triSetter(){
             color_filter_key = 3;
             chosenType.Content = "Chosen type: Tritanopia";
             if (mode.status) mode.live();
@@ -217,8 +224,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Sets the color filter to grayscale, and if real time is called, run it
         /// </summary>
-        private void grSetter()
-        {
+        private void grSetter(){
             color_filter_key = 4;
             chosenType.Content = "Chosen type: Grayscale";
             if (mode.status) mode.live();
@@ -229,10 +235,8 @@ namespace Color_Test_WPF_App_NET_Framework
         /// Attempt to run the screenshot method (or prompt the user choose one)
         /// Do this via creating and running a SelectArea object
         /// </summary>
-        private void runScreenshot()
-        {
-            if (color_filter_key > 0 && color_filter_key < 5)
-            {
+        private void runScreenshot(){
+            if (color_filter_key > 0 && color_filter_key < 5){
                 SelectArea obj = new SelectArea();
                 //if u wanna hide the main window, uncomment the bottom line
                 //this.Visibility = Visibility.Hidden;
@@ -240,22 +244,15 @@ namespace Color_Test_WPF_App_NET_Framework
                 //obj.Opacity = 0.99;
                 obj.Show();
             }
-            else
-            {
-                selectFirstMsgBox();
-            }
+            else{ selectFirstMsgBox(); }
         }
-
-
 
         /// <summary>
         /// Attempt to run the real time filter by calling the Program1() class object
         /// If the user has not selected a blindness type, prompt to do so
         /// </summary>
-        private void realTime()
-        {
-            if (color_filter_key > 0 && color_filter_key < 5)
-            {
+        private void realTime(){
+            if (color_filter_key > 0 && color_filter_key < 5){
                 mode.status = !mode.status;
                 mode.live();
             }
@@ -287,8 +284,8 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
         //The following functions (until the end of the class) are simple getters for events occuring on the main window, using different arguments for the different inputs they are called with
-
-
+        //
+        //
 
         /// <summary>
         /// Call the deusetter for inputs using routedeventargs
