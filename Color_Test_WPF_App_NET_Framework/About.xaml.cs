@@ -47,7 +47,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <param name="e"></param>
         private void openEmail(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:colororacle@gmail.com");
+            System.Diagnostics.Process.Start("mailto:colororacleproject@gmail.com");
         }
 
         /// <summary>
