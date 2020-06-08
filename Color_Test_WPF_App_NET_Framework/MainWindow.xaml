@@ -134,7 +134,7 @@
 
         <Label x:Name="chosenType" Content="Chosen type: None" HorizontalContentAlignment="Center" Height="100" Margin="61,180,61.6,46.4" Grid.Row="1"/>
 
-        <Label Content="Color Oracle&#xD;&#xA;" Margin="61,2.8,127.6,283.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.Row="1"/>
+        <Label Content="Color Oracle&#xD;&#xA;" Margin="55,30,133.6,300.4" VerticalAlignment="Center" Width="205" HorizontalAlignment="Center" Height="40" FontSize="18" Grid.RowSpan="2"/>
         <Label Content="Choose a blindness type" HorizontalAlignment="Center" Margin="127,68,73.6,0" VerticalAlignment="Top" Grid.Row="1" Width="193"/>
 
     </Grid>
