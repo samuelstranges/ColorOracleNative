@@ -36,7 +36,14 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <param name="e"></param>
         private void openWebsite(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://colororacle.org");
+            try
+            {
+                System.Diagnostics.Process.Start("http://colororacle.org");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
 
@@ -47,7 +54,14 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <param name="e"></param>
         private void openEmail(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:colororacleproject@gmail.com");
+            try
+            {
+                System.Diagnostics.Process.Start("mailto:colororacleproject@gmail.com");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         /// <summary>
@@ -57,7 +71,14 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <param name="e"></param>
         private void openSource(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://github.com/colororacle");
+            try
+            {
+                System.Diagnostics.Process.Start("http://github.com/colororacle");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }
