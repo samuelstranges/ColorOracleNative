@@ -38,17 +38,18 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
             //Most of these functions use the MainWindow's public functions
-            MenuItem mainWindow = new MenuItem("Color Oracle", (s, d) => openMainWindow(s, d));
+            MenuItem mainWindow = new MenuItem("Open Color Oracle Window", (s, d) => openMainWindow(s, d));
             MenuItem toggleRealTime = new MenuItem("Live Mode", (s, d) => theWindow.toggleRealTimeGS(s, d)); toggleRealTime.Shortcut = Shortcut.CtrlShiftL;
             MenuItem screenshot = new MenuItem("Screenshot", (s, d) => theWindow.screenshotGS(s, d));        screenshot.Shortcut = Shortcut.CtrlShiftM;
             MenuItem toggleMethod = new MenuItem("Cycle Blindness Type", (s, d) => theWindow.switchTypesGS(s, d));  toggleMethod.Shortcut = Shortcut.CtrlShiftN;
-            MenuItem exit = new MenuItem("Exit", (s, d) => this.close(s, d));
+            MenuItem exit = new MenuItem("Exit Color Oracle", (s, d) => this.close(s, d));
 
             contextMenu1.MenuItems.Add(mainWindow);
+            contextMenu1.MenuItems.Add(exit);
             contextMenu1.MenuItems.Add(toggleRealTime);
             contextMenu1.MenuItems.Add(screenshot);
             contextMenu1.MenuItems.Add(toggleMethod);
-            contextMenu1.MenuItems.Add(exit);
+            
 
 
             nIcon.ContextMenu = contextMenu1;
