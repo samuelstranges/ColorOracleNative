@@ -13,7 +13,7 @@
         <Image HorizontalAlignment="Center"  Margin="90,10,89.2,0" VerticalAlignment="Top" RenderTransformOrigin="-0.631,0.35" Source="icon_big.ico" />
         <TextBlock TextAlignment="Center" Margin="0,90,0.2,24">
             Welcome to Color Oracle <LineBreak/><LineBreak/>
-            Version 0.2
+            Version 1.0.0
         </TextBlock>
         <Rectangle Fill="  #4a154b" HorizontalAlignment="Left" Height="79" Stroke="Black" VerticalAlignment="Top" Width="142" Margin="-52,169,0,-28" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
