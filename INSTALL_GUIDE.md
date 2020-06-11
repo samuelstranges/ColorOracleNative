@@ -4,7 +4,7 @@
 
 The software’s installation process is easy and streamlined.
 
-1.  Download the .zip file
+1.  Download the .zip file available in [Releases] (https://github.com/samuelstranges/ColorOracleNative/releases)
 2.  Extract the zip to a desired location
 3.  Run the setup.exe file
 4.  Choose install when prompted
