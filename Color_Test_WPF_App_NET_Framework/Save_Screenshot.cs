@@ -6,11 +6,18 @@ using System.Windows.Forms;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
+    /// <summary>
+    /// inheritance of the Save_Screenshot
+    /// </summary>
     public partial class Save_Screenshot : Form
     {
         Bitmap bmp;
         PictureBox pb = new PictureBox();
         
+        /// <summary>
+        /// initialize the save_screenshot method which accept the select area form coordinate and size
+        /// create the bit image and filter it, show it on the dialog finally 
+        /// </summary>
         public Save_Screenshot(Int32 x, Int32 y, Int32 w, Int32 h, Size s)
         {
             InitializeComponent();
@@ -20,7 +27,7 @@ namespace Color_Test_WPF_App_NET_Framework
             Graphics g = Graphics.FromImage(bmp);
             g.CopyFromScreen(rect.Left, rect.Top, 0, 0, s, CopyPixelOperation.SourceCopy);
 
-
+           
             bmp = FilterImg(bmp);
 
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -33,6 +40,9 @@ namespace Color_Test_WPF_App_NET_Framework
 
             
         }
+        /// <summary>
+        /// main filter image method 
+        /// </summary>
         private Bitmap FilterImg(Bitmap image)
         {
             Simulator simulator = new Simulator();
@@ -42,7 +52,9 @@ namespace Color_Test_WPF_App_NET_Framework
 
             return (Bitmap) imageFromRawBgrArray(byteArray, image.Width, image.Height, PixelFormat.Format24bppRgb);
         }
-
+        /// <summary>
+        /// get image rgbArray by using the LockBit function
+        /// </summary>
         private int[] getIntArray(Bitmap image)
         {
             int width = image.Width;
@@ -73,7 +85,9 @@ namespace Color_Test_WPF_App_NET_Framework
             image.UnlockBits(data);
             return rgbArray;
         }
-
+        /// <summary>
+        /// get the dataByteArray from rgbArray
+        /// </summary>
         private byte[] intArrayToByteArray(int[] data)
         {
             int length = data.Length;
@@ -90,7 +104,9 @@ namespace Color_Test_WPF_App_NET_Framework
             }
             return dataBytes;
         }
-
+        /// <summary>
+        /// processing the dataByte by using stride and using UnLockBit to return the output
+        /// </summary>
         private Image imageFromRawBgrArray(byte[] arr, int width, int height, PixelFormat pixelFormat)
         {
             var output = new Bitmap(width, height, pixelFormat);
@@ -112,7 +128,9 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
 
-
+        /// <summary>
+        /// save button for local storage when save button has been triggered and hide the form as well
+        /// </summary>
         private void Button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -125,7 +143,9 @@ namespace Color_Test_WPF_App_NET_Framework
             }
             this.Hide();
         }
-
+        /// <summary>
+        /// Form load for future use
+        /// </summary>
          private void Save_Screenshot_Load(object sender, EventArgs e)
         {
 
