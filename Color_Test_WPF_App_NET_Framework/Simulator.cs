@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
@@ -67,25 +68,48 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <returns>processed pixels data</returns>
         public int[] Simulate(int[] inData)
         {
+            int[] outData = { };
+            Filter filter;
+
             switch (MainWindow.color_filter_key)
             {
                 case 1:     // Deuteran
-                    return new RedGreenFilter(9591, 23173, -730).filter(inData);
+                    filter = new RedGreenFilter(9591, 23173, -730);
+                    break;
                 case 2:     // Protan
-                    return new RedGreenFilter(3683, 29084, 131).filter(inData);
+                    filter = new RedGreenFilter(3683, 29084, 131);
+                    break;
                 case 3:     // Tritan
-                    return new TritanFilter().filter(inData);
+                    filter = new TritanFilter();
+                    break;
                 case 4:     // Grayscale
-                    return new GrayscaleFilter().filter(inData);
+                    filter = new GrayscaleFilter();
+                    break;
                 default:
-                    return new GrayscaleFilter().filter(inData);
+                    filter = new GrayscaleFilter();
+                    break;
             }
+
+            try
+            {
+                outData = filter.filter(inData);
+                if (outData.Length != inData.Length)
+                {
+                    throw new Exception("Output pixels data length doesn't match");
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            return outData;
         }
+
 
         /// <summary>
         /// A red-green blindness filter (deuteranopia and protanopia)
         /// </summary>
-        private class RedGreenFilter
+        private class RedGreenFilter : Filter
         {
             private readonly int k1;
             private readonly int k2;
@@ -101,10 +125,11 @@ namespace Color_Test_WPF_App_NET_Framework
 
 
             /// <summary>
+            /// Override method
             /// Simulate red green color blindness (deuteranopia and protanopia) vision
             /// </summary>
-            /// <param name="inData"></param>
-            /// <returns></returns>
+            /// <param name="inData">pixels data to be processed</param>
+            /// <returns>processed pixels data</returns>
             public int[] filter(int[] inData)
             {
                 int prevIn = 0;
@@ -182,12 +207,12 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// A Tritanopia blindness filter
         /// </summary>
-        private class TritanFilter
+        private class TritanFilter : Filter
         {
             /// <summary>
             /// convert image into tritanopia vision
             /// </summary>
-            /// <param name="inData">pixels data to be process</param>
+            /// <param name="inData">pixels data to be processed</param>
             /// <returns>processed pixels data</returns>
             public int[] filter(int[] inData)
             {
@@ -318,12 +343,12 @@ namespace Color_Test_WPF_App_NET_Framework
         /// conversion to grayscale
         /// https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale
         /// </summary>
-        private class GrayscaleFilter
+        private class GrayscaleFilter : Filter
         { 
             /// <summary>
             /// convert image into grayscale vision
             /// </summary>
-            /// <param name="inData">pixels data to be process</param>
+            /// <param name="inData">pixels data to be processed</param>
             /// <returns>processed pixels data</returns>
             public int[] filter(int[] inData)
             {

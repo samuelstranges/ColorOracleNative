@@ -75,6 +75,7 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Filter.cs" />
     <Compile Include="Live.cs" />
     <Compile Include="SelectArea.cs">
       <SubType>Form</SubType>
