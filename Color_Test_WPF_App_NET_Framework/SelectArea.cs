@@ -4,8 +4,14 @@ using System.Windows.Forms;
 
 namespace Color_Test_WPF_App_NET_Framework
 {
+    /// <summary>
+    /// The initialize of the SelectArea Form
+    /// </summary>
     public partial class SelectArea : Form
     {
+        /// <summary>
+        /// Create a half transparent but remove the original borders
+        /// </summary>
         public SelectArea()
         {
             InitializeComponent();
@@ -19,7 +25,9 @@ namespace Color_Test_WPF_App_NET_Framework
         
 
        
-
+        /// <summary>
+        /// Create four rectanges to replace the orginal border with darkCyan color
+        /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle Top =new Rectangle(0, 0, this.ClientSize.Width, thickness);
@@ -34,6 +42,9 @@ namespace Color_Test_WPF_App_NET_Framework
         
         private const int HT_CLIENT = 0x1;
         private const int HT_CAPTION = 0x2;
+        /// <summary>
+        /// The window message listner which would catch the window message such as mouse click. 
+        /// </summary>
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x84)
@@ -102,7 +113,9 @@ namespace Color_Test_WPF_App_NET_Framework
             }
             base.WndProc(ref m);
         }
-
+        /// <summary>
+        /// Save button listener to trigger the save screenshot method
+        /// </summary>
         private void Button1_Click(object sender, EventArgs e)
         {
             this.Hide();
