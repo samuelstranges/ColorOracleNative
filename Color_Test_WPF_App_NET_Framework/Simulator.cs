@@ -2,23 +2,56 @@
 
 namespace Color_Test_WPF_App_NET_Framework
 {
+    /// <summary>
+    /// A simulator for color-impaired vision (deuteranopia, protanopia, tritanopia and grayscale).
+    /// 
+    /// For a description of the algorithm, see: Vienot, F., Brettel, H., Mollon,
+    /// J.D., (1999). Digital video colourmaps for checking the legibility of
+    /// displays by dichromats. Color Research and Application 24, 243-252.
+    /// 
+    /// Code has been modified and converted from Java Implementation
+    /// https://github.com/nvkelso/color-oracle-java/blob/master/src/ika/colororacle/Simulator.java
+    /// </summary>
     internal class Simulator
     {
+        
+        /// <summary>
+        /// Default screen gamma on Windows is 2.2
+        /// </summary>
         private const double GAMMA = 2.2;
         private const double GAMMA_INV = 1.0 / GAMMA;
-        private readonly static short[] SRGB_TO_LINRGB;
-        private readonly static byte[] LINRGB_TO_SRGB;
 
+        /// <summary>
+        /// A lookup table for the conversion from gamma-corrected sRGB values
+        /// [0..255] to linear RGB values [0.32767]
+        /// </summary>
+        private readonly static short[] SRGB_TO_LINRGB;
+
+        /// <summary>
+        /// A lookup table for the conversion of linear RGB values [0..255]
+        /// to gamma-corrected sRGB values [0..255]
+        /// </summary>
+        private readonly static byte[] LINRGB_TO_SRGB;
+        
+
+        /// <summary>
+        /// Creates a new instance of Simulator
+        /// </summary>
         static Simulator()
         {
+            // initialize SRGB_TO_LINRGB 
             SRGB_TO_LINRGB = new short[256];
             for (int i = 0; i < 256; i++)
             {
+                // compute linear rgb between 0 and 1
                 double lin = 0.992052 * Math.Pow(i / 255.0, GAMMA) + 0.003974;
+
+                // scale linear rgb to 0..32767
                 SRGB_TO_LINRGB[i] = (short)(lin * 32767.0);
             }
 
 
+            // initialize LINRGB_TO_SRGB
             LINRGB_TO_SRGB = new byte[256];
             for (int i = 0; i < 256; i++)
             {
@@ -27,6 +60,11 @@ namespace Color_Test_WPF_App_NET_Framework
         }
 
 
+        /// <summary>
+        /// Simulate color impaired vision
+        /// </summary>
+        /// <param name="inData">pixels data to be processed</param>
+        /// <returns>processed pixels data</returns>
         public int[] Simulate(int[] inData)
         {
             switch (MainWindow.color_filter_key)
@@ -44,12 +82,15 @@ namespace Color_Test_WPF_App_NET_Framework
             }
         }
 
-
+        /// <summary>
+        /// A red-green blindness filter (deuteranopia and protanopia)
+        /// </summary>
         private class RedGreenFilter
         {
             private readonly int k1;
             private readonly int k2;
             private readonly int k3;
+
 
             public RedGreenFilter(int k1, int k2, int k3)
             {
@@ -58,6 +99,12 @@ namespace Color_Test_WPF_App_NET_Framework
                 this.k3 = k3;
             }
 
+
+            /// <summary>
+            /// Simulate red green color blindness (deuteranopia and protanopia) vision
+            /// </summary>
+            /// <param name="inData"></param>
+            /// <returns></returns>
             public int[] filter(int[] inData)
             {
                 int prevIn = 0;
@@ -84,6 +131,14 @@ namespace Color_Test_WPF_App_NET_Framework
                         int g_lin = SRGB_TO_LINRGB[g];
                         int b_lin = SRGB_TO_LINRGB[b];
 
+
+                        // simulated red and green are identical
+                        // scale the matrix values to 0..2^15 for integer computations 
+                        // of the simulated protan values.
+                        // divide after the computation by 2^15 to rescale.
+                        // also divide by 2^15 and multiply by 2^8 to scale the linear rgb to 0..255
+                        // total division is by 2^15 * 2^15 / 2^8 = 2^22
+                        // shift the bits by 22 places instead of dividing
                         int r_blind = (k1 * r_lin + k2 * g_lin) >> 22;
                         int b_blind = (k3 * r_lin - k3 * g_lin + 32768 * b_lin) >> 22;
 
@@ -124,8 +179,16 @@ namespace Color_Test_WPF_App_NET_Framework
             }
         }
 
+        /// <summary>
+        /// A Tritanopia blindness filter
+        /// </summary>
         private class TritanFilter
         {
+            /// <summary>
+            /// convert image into tritanopia vision
+            /// </summary>
+            /// <param name="inData">pixels data to be process</param>
+            /// <returns>processed pixels data</returns>
             public int[] filter(int[] inData)
             {
                 /* Code for tritan simulation from GIMP 2.2
@@ -170,11 +233,12 @@ namespace Color_Test_WPF_App_NET_Framework
                         int g = (0xff00 & nowIn) >> 8;
                         int b = 0xff & nowIn;
 
-
+                        // get linear rgb values in the range 0..2^15-1
                         r = SRGB_TO_LINRGB[r];
                         g = SRGB_TO_LINRGB[g];
                         b = SRGB_TO_LINRGB[b];
 
+                        /* Convert to LMS (dot product with transform matrix) */
                         float L = (r * 0.05059983f + g * 0.08585369f + b * 0.00952420f) / 32767f;
                         float M = (r * 0.01893033f + g * 0.08925308f + b * 0.01370054f) / 32767f;
                         float S;
@@ -248,8 +312,19 @@ namespace Color_Test_WPF_App_NET_Framework
             }
         }
 
+        
+        /// <summary>
+        /// A filter for grayscale conversion: perceptual luminance-preserving
+        /// conversion to grayscale
+        /// https://en.wikipedia.org/wiki/Grayscale#Colorimetric_(perceptual_luminance-preserving)_conversion_to_grayscale
+        /// </summary>
         private class GrayscaleFilter
-        {
+        { 
+            /// <summary>
+            /// convert image into grayscale vision
+            /// </summary>
+            /// <param name="inData">pixels data to be process</param>
+            /// <returns>processed pixels data</returns>
             public int[] filter(int[] inData)
             {
                 int prevIn = 0;
@@ -271,7 +346,7 @@ namespace Color_Test_WPF_App_NET_Framework
                         int g = (0xff00 & nowIn) >> 8;
                         int b = 0xff & nowIn;
 
-
+                        // get linear rgb values in range 0..2^15-1
                         int r_lin = SRGB_TO_LINRGB[r];
                         int g_lin = SRGB_TO_LINRGB[g];
                         int b_lin = SRGB_TO_LINRGB[b];
