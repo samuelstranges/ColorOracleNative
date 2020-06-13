@@ -40,9 +40,13 @@ namespace Color_Test_WPF_App_NET_Framework
 
             
         }
+
+
         /// <summary>
-        /// main filter image method 
+        /// Main image filter process
         /// </summary>
+        /// <param name="image">image to be simulated</param>
+        /// <returns>simulated result</returns>
         private Bitmap FilterImg(Bitmap image)
         {
             Simulator simulator = new Simulator();
@@ -52,9 +56,14 @@ namespace Color_Test_WPF_App_NET_Framework
 
             return (Bitmap) imageFromRawBgrArray(byteArray, image.Width, image.Height, PixelFormat.Format24bppRgb);
         }
+
         /// <summary>
-        /// get image rgbArray by using the LockBit function
+        /// obtain intArray from image
+        /// intArray - 24 bits values of concatenated RGB binary representation  
+        /// e.g:format (binary) RRRRRRRRGGGGGGGGBBBBBBBB -> (int) values
         /// </summary>
+        /// <param name="image">image</param>
+        /// <returns>intArray representation of image</returns>
         private int[] getIntArray(Bitmap image)
         {
             int width = image.Width;
@@ -85,9 +94,16 @@ namespace Color_Test_WPF_App_NET_Framework
             image.UnlockBits(data);
             return rgbArray;
         }
+
+
+
         /// <summary>
-        /// get the dataByteArray from rgbArray
+        /// convert intArray to ByteArray
+        /// An element in intArray could generate three elements (RGB) in ByteArray.
+        /// e.g: format [RRRRRRRRGGGGGGGGBBBBBBBB] -> [RRRRRRRR, GGGGGGGG, BBBBBBBB]
         /// </summary>
+        /// <param name="data">intArray</param>
+        /// <returns>ByteArray</returns>
         private byte[] intArrayToByteArray(int[] data)
         {
             int length = data.Length;
@@ -104,9 +120,16 @@ namespace Color_Test_WPF_App_NET_Framework
             }
             return dataBytes;
         }
+
+
         /// <summary>
-        /// processing the dataByte by using stride and using UnLockBit to return the output
+        /// convert byteArray into Image
         /// </summary>
+        /// <param name="arr">byteArray</param>
+        /// <param name="width">width of image</param>
+        /// <param name="height">height of image</param>
+        /// <param name="pixelFormat">pixel format of image</param>
+        /// <returns>Image generated based on the byteArray</returns>
         private Image imageFromRawBgrArray(byte[] arr, int width, int height, PixelFormat pixelFormat)
         {
             var output = new Bitmap(width, height, pixelFormat);
@@ -144,7 +167,7 @@ namespace Color_Test_WPF_App_NET_Framework
             this.Hide();
         }
         /// <summary>
-        /// Form load for future use
+        /// Form load placeholder to prevent from getting compilation error
         /// </summary>
          private void Save_Screenshot_Load(object sender, EventArgs e)
         {
