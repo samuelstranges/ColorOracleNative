@@ -73,7 +73,7 @@ namespace Color_Test_WPF_App_NET_Framework
         {
             try
             {
-                System.Diagnostics.Process.Start("http://github.com/colororacle");
+                System.Diagnostics.Process.Start("https://github.com/samuelstranges/ColorOracleNative");
             }
             catch (Exception exc)
             {

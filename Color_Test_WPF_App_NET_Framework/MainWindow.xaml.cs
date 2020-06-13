@@ -18,7 +18,7 @@ namespace Color_Test_WPF_App_NET_Framework
         /// <summary>
         /// Create an instance of the Program Class that runs the real time filter
         /// </summary>
-        public Program1 mode = new Program1(color_filter_key);
+        public Live mode = new Live(color_filter_key);
 
 
 
