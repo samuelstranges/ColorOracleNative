@@ -40,8 +40,8 @@ namespace Color_Test_WPF_App_NET_Framework
             e.Graphics.FillRectangle(Brushes.DarkCyan, Bottom);
         }
         
-        private const int HT_CLIENT = 0x1;
-        private const int HT_CAPTION = 0x2;
+        ///private const int HT_CLIENT = 0x1;
+        ///private const int HT_CAPTION = 0x2;
         /// <summary>
         /// The window message listner which would catch the window message such as mouse click. 
         /// </summary>
