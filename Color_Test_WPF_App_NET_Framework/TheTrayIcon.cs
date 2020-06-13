@@ -38,6 +38,9 @@ namespace Color_Test_WPF_App_NET_Framework
                 HotkeyManager.Current.AddOrReplace("screenshotGS", Key.M, ModifierKeys.Control | ModifierKeys.Shift, theWindow.screenshotGS);
                 HotkeyManager.Current.AddOrReplace("switchTypesGS", Key.N, ModifierKeys.Control | ModifierKeys.Shift, theWindow.switchTypesGS);
 
+                //Seperators for menu
+                MenuItem seperator = new MenuItem("-");
+                MenuItem seperator2 = new MenuItem("-");
 
                 //Most of these functions use the MainWindow's public functions
                 MenuItem mainWindow = new MenuItem("Open Color Oracle Window", (s, d) => openMainWindow(s, d));
@@ -47,7 +50,9 @@ namespace Color_Test_WPF_App_NET_Framework
                 MenuItem exit = new MenuItem("Exit Color Oracle", (s, d) => this.close(s, d));
 
                 contextMenu1.MenuItems.Add(mainWindow);
+                contextMenu1.MenuItems.Add(seperator);
                 contextMenu1.MenuItems.Add(exit);
+                contextMenu1.MenuItems.Add(seperator2);
                 contextMenu1.MenuItems.Add(toggleRealTime);
                 contextMenu1.MenuItems.Add(screenshot);
                 contextMenu1.MenuItems.Add(toggleMethod);
