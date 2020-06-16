@@ -1,5 +1,5 @@
 # ColorOracleNative
-A C# Implementation of the [Color Oracle](colororacle.org) software, created by a student team at Monash University, developed over the course of Semester 1, 2020. 
+A C# Implementation of the [Color Oracle](https://www.colororacle.org) software, created by a student team at Monash University, developed over the course of Semester 1, 2020. 
 
 ## Installation
 Read the [installation guide](INSTALL_GUIDE.md) for details. Alternatively, you can build the software from within the Visual Studio IDE.
